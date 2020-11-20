@@ -14,7 +14,9 @@ VALUES
 ('doutorabobrinha', 'nino@gmail.com'),
 ('numero4', 'numero4@knd.com'),
 ('mamaefalei', 'mamaefalei@gmail.com'),
-('horacio', 'horacio@panini.com.br');
+('horacio', 'horacio@panini.com.br'),
+('bolas', 'bolas@mtst.com.br'),
+('couvos', 'couvos.flor@psdb.gov.br');
 
 
 CREATE TABLE IF NOT EXISTS item(
@@ -61,8 +63,8 @@ create table if not exists public.habilidade(
 create table if not exists public.progresso(
 	id_progresso bigint primary key,
 	porcentagem_conclusao double precision default 0.0
-		constraint porcentagem_menor_um check (preco < 1.0)
-		constraint porcentagem_maior_zero check (preco > 0.0)
+		constraint porcentagem_menor_um check (porcentagem_conclusao < 1.0)
+		constraint porcentagem_maior_zero check (porcentagem_conclusao > 0.0)
 );
 
 create table if not exists public.musica(
