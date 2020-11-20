@@ -1,4 +1,5 @@
-import PySimpleGUI as sg 
+import PySimpleGUI as sg
+import database
 
 class Screen():
 	
@@ -40,9 +41,22 @@ class MainScreen(Screen):
 	def window_behaviour(self, window):
 		print("Nada a ser feito")
 		return True
+		
+class SignUpScreen(Screen):
+
+	# Overwriting method
+	def window_behaviour(self, window):
+		
+		event, values = window.read()
+		user = values
+		
+		return True
 	
 
-# Tela 1	
+
+
+
+'''# Tela 1	
 layout = [  [sg.Text("What's your name?")],
             [sg.Input()],
             [sg.Button('Ok')] ]
@@ -69,4 +83,4 @@ params['layout'] = [  [sg.Text("Qual o seu nome?")],
 s2 = Screen(params)
 
 s2.display()
-s2.close()
+s2.close()'''
