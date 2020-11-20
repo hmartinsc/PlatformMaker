@@ -1,32 +1,33 @@
 import PySimpleGUI as sg
 import database
+import screen_behaviour
 
 class Screen():
 	
-	def __init__(self, params):#, window_behaviour):
+	def __init__(self, params):
 		self.layout = params['layout']
 		self.title = params['title']
 		
 		self.window = sg.Window(self.title, self.layout) # Window Defintion
 
-		#self.window_behaviour = window_behaviour # Behaviour -> retorna status da tela
+		self.window_behaviour = params['behaviour'] # Behaviour -> retorna status da tela
 		
 	def display(self):
-		print('Displaying screen')
+		#print('Displaying screen')
 		return self.window_behaviour( self.window )
 		
 	def close(self):
 		self.window.close()
 		
-	def window_behaviour(self, window):
-		# Default screen
-		event, values = window.read() 
+	#def window_behaviour(self, window):
+	#	# Default screen
+	#	event, values = window.read() 
 
 		# Do something with the information gathered
-		print('Hello', values[0], "! Thanks for trying PySimpleGUI")
-		print("ANiversario em %s" % values[1])
+	#	print('Hello', values[0], "! Thanks for trying PySimpleGUI")
+	#	print("ANiversario em %s" % values[1])
 		
-		return True
+	#	return True
 		
 		
 class ScreenStack():
@@ -52,7 +53,17 @@ class SignUpScreen(Screen):
 		
 		return True
 	
-
+nextScreen = 'Main'
+behavs = screen_behaviour.behaviours
+#main = behavs['Main']
+#s1 = Screen(main)
+#nextScreen = s1.display()
+#s1.close()
+while nextScreen:
+	print('Next screen: ', nextScreen)
+	s = Screen(behavs[nextScreen])
+	nextScreen = s.display()
+	s.close()
 
 
 

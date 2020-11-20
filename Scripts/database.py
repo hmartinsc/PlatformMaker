@@ -25,17 +25,18 @@ def user_exists(username, email):
 
 	
 def add_user(username, email):
-	# Verify if is valid
+	# Verify if is valid!!!!!
 	
 	# Add to database
 	query = "INSERT INTO  public.jogador (nick, email) VALUES ('%s', '%s')" % (username, email)
 	exe_query(query)	
 	
 
-username = "noobmaster"
-email = "haroldo.mansur@outlook.com"
+if __name__ == '__main__':
+	username = "noobmaster"
+	email = "haroldo.mansur@outlook.com"
 
-if user_exists(username, email):
-	print("User exists")
-else:
-	print("User not found")
+	if user_exists(username, email):
+		print("User exists")
+	else:
+		print("User not found")
