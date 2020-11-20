@@ -8,21 +8,28 @@ conn = pg8000.connect(user = 'postgres',
 	
 cursor = conn.cursor()
 
-def executar_query(query=str()):
+def exe_query(query=str()):
 	cursor.execute(query)
-	response = cursor.fetchall()
+	try:
+		response = cursor.fetchall()
+	except pg8000.exceptions.ProgrammingError:
+		return cursor.rowcount
+	
 	return(response)
-
-def executar_query_semValor(query=str()):
-	cursor.execute(query)
-	return cursor.rowcount
 	
+def add_user(username, email):
+	# Verify if exists and if valid
 	
+	# Add to database
+	query = "INSERT INTO  public.jogador (nick, email) VALUES ('%s', '%s')" % (username, email)
+	exe_query(query)	
 	
 query = '''
 	SELECT * FROM public.jogador
 	ORDER BY id_jogador ASC 
 '''
-bla = executar_query(query)	
 
+add_user('teste1', 'teste@gmail.com')
+
+bla = exe_query(query)	
 print(bla)
