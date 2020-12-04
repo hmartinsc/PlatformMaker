@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+# Main
 def mainLayout():
 	return [[sg.Button('Jogar', key="TestKey", tooltip="clickme")], [sg.Button('Amigos', key="friends")], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
 	
@@ -8,24 +9,10 @@ def mainBehav(window):
 	
 	print('event: ', event)
 	print('values: ', values)
-	
-	#if event == '1': # First button
-	#	pass
-	#if event == 'Amigos':
-	#	print("Amigos")
-	#if event == '3':
-	#	pass
-	#if event == '4': # Fourth button
-	#	pass
-
-	#print('Hello', values[0], "! Thanks for trying PySimpleGUI")
-	#print("ANiversario em %s" % values[1])
 		
 	return event
-	
-def condMainToFriends(window):
-	return True
-	
+
+# Friend
 def friendLayout():
 	return [[sg.Button('Obrigado, amigo, vc e um amigo', key="friends")]]
 	
@@ -36,6 +23,46 @@ def friendBehav(window):
 	print('values: ', values)
 	
 	return event
+
+# Config
+def configLayout():
+	return [[sg.Button('Button', key="next")]]
+	
+def configBehav(window):
+	event, values = window.read()
+	
+	print('event: ', event)
+	print('values: ', values)
+	
+	return event
+
+# Choose level
+def chooseLevelLayout():
+	return [[sg.Button('Button', key="next")]]
+	
+def chooseLevelLayoutBehav(window):
+	event, values = window.read()
+	
+	print('event: ', event)
+	print('values: ', values)
+	
+	return event
+
+# Level
+def levelLayout():
+	return [[sg.Button('Button', key="next")]]
+	
+def levelLayoutBehav(window):
+	event, values = window.read()
+	
+	print('event: ', event)
+	print('values: ', values)
+	
+	return event
+
+
+def condMainToFriends(window):
+	return True
 
 behaviours = {
 
