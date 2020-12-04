@@ -53,7 +53,7 @@ class SignUpScreen(Screen):
 		
 		return True
 	
-nextScreen = 'Main'
+nextScreen = 'main'
 behavs = screen_behaviour.behaviours
 #main = behavs['Main']
 #s1 = Screen(main)
