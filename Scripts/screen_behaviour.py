@@ -1,12 +1,27 @@
 import PySimpleGUI as sg
 from database import *
-
+from datetime import datetime, timedelta
 
 class Screen():
-    	
+		
 	def __init__(self, params):
 		print("Initializing screen")
 		self.params = params#.copy()
+		if('logged' not in params.keys()):
+			print("Not logged")
+		else:
+			if(params['logged'] == True):
+				print("Logged")
+				print('logintime: ', params['login_time'])
+
+				if params['login_time'] \
+					and datetime.now() > params['login_time'] + timedelta(seconds=5):
+					
+					params["logged"] = False 
+			else:
+				print("Not logged")
+				return
+
 		#self.layout = params['layout']() # Execute function of layout
 		#self.title = params['title']
 		
@@ -24,8 +39,9 @@ class Screen():
 		self.window.close()
 
 class Login(Screen):
-    
+	
 	def __init__(self, params):
+		params['login_time'] = datetime.now()
 		self.title = "Login screen"
 		super().__init__(params)
 		print("Initializing Login")
@@ -50,12 +66,13 @@ class Login(Screen):
 		print('passqord: ', psswd)
 
 		if user_exists(user, psswd):
+			self.params['logged'] = True
 			return event#{'next': event}
 		else:
 			return 'login'#{'next': 'login', 'params': {'bla': 1}}
 
 class Main(Screen):
-    
+	
 	def __init__(self, params):
 		self.title = "Login screen"
 		super().__init__(params)
@@ -78,7 +95,7 @@ class Main(Screen):
 		return event
 
 class Friend(Screen):
-    
+	
 	def __init__(self, params):
 		self.title = "Login screen"
 		super().__init__(params)
@@ -100,7 +117,7 @@ class Friend(Screen):
 
 
 class Config(Screen):
-    
+	
 	def __init__(self, params):
 		self.title = "Login screen"
 		super().__init__(params)
@@ -121,7 +138,7 @@ class Config(Screen):
 
 
 class ChooseLevel(Screen):
-    
+	
 	def __init__(self, params):
 		self.title = "Login screen"
 		super().__init__(params)
@@ -141,7 +158,7 @@ class ChooseLevel(Screen):
 
 
 class Level(Screen):
-    
+	
 	def __init__(self, params):
 		self.title = "Login screen"
 		super().__init__(params)
