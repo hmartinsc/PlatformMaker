@@ -51,8 +51,21 @@ def add_user(username, email):
 	exe_query(query)
 
 def list_friends(email):
-	query = "SELECT * FROM public.jogador"
-	return exe_query(query)
+	query = '''
+		WITH l_amizades AS 
+		(
+			SELECT j1.nick n1, j1.email em1, j2.nick n2, j2.email em2
+			FROM public.Amizade am
+			INNER JOIN public.Jogador j1
+			ON j1.id_jogador = am.id_jogador1
+			INNER JOIN public.Jogador j2
+			ON j2.id_jogador = am.id_jogador2
+		)
+		SELECT n1 FROM l_amizades WHERE em2 = '%s'
+		UNION
+		SELECT n2 FROM l_amizades WHERE em1 = '%s'
+	'''
+	return exe_query(query % (email, email))
 
 
 if __name__ == '__main__':

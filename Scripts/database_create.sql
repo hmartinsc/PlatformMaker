@@ -31,6 +31,9 @@ CREATE TABLE IF NOT EXISTS public.Amizade(
 	  REFERENCES public.Jogador(id_jogador)
 );
 
+INSERT INTO public.Amizade(id_jogador1, id_jogador2)
+VALUES (1, 2), (2, 4), (2, 1), (3, 4);
+
 CREATE TABLE IF NOT EXISTS item(
 	ID_item BIGSERIAL PRIMARY KEY,
 	ID_jogador BIGSERIAL REFERENCES public.jogador(ID_Jogador)
