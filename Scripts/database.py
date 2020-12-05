@@ -30,7 +30,7 @@ def add_user(username, email):
 	# Add to database
 	query = "INSERT INTO  public.jogador (nick, email) VALUES ('%s', '%s')" % (username, email)
 	exe_query(query)	
-	
+
 
 if __name__ == '__main__':
 	username = "noobmaster"
