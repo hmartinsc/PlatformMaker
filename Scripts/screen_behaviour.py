@@ -5,22 +5,26 @@ from datetime import datetime, timedelta
 class Screen():
 		
 	def __init__(self, params):
-		print("Initializing screen")
+    	
+		print("\nInitializing screen")
 		self.params = params#.copy()
+		print("params: ", params)
+
 		if('logged' not in params.keys()):
-			print("Not logged")
+			print("Not logged (param does not exist)")
 		else:
 			if(params['logged'] == True):
 				print("Logged")
 				print('logintime: ', params['login_time'])
 
 				if params['login_time'] \
-					and datetime.now() > params['login_time'] + timedelta(seconds=5):
+					and datetime.now() > params['login_time'] + timedelta(seconds=20):
 					
+					#import pdb; pdb.set_trace()
 					params["logged"] = False 
 			else:
 				print("Not logged")
-				return
+				#return
 
 		#self.layout = params['layout']() # Execute function of layout
 		#self.title = params['title']
@@ -33,6 +37,10 @@ class Screen():
 		
 	def display(self):
 		#print('Displaying screen')
+		#import pdb; pdb.set_trace()
+		if 'logged' in self.params.keys() and not self.params['logged']:
+    			self.params['logged'] = True # Infinit loop otherwise
+    			return 'login'
 		return self.window_behaviour( self.window )
 		
 	def close(self):
@@ -41,9 +49,9 @@ class Screen():
 class Login(Screen):
 	
 	def __init__(self, params):
-		params['login_time'] = datetime.now()
 		self.title = "Login screen"
 		super().__init__(params)
+		params['login_time'] = datetime.now()
 		print("Initializing Login")
 
 	# Login
