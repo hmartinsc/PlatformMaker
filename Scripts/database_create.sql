@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS public.Amizade(
 	  REFERENCES public.Jogador(id_jogador),
 	CONSTRAINT fk_jogador2
       FOREIGN KEY(id_jogador2) 
-	  REFERENCES public.Jogador(id_jogador)
+	  REFERENCES public.Jogador(id_jogador),
+	UNIQUE(id_jogador1, id_jogador2)
 );
 
 INSERT INTO public.Amizade(id_jogador1, id_jogador2)

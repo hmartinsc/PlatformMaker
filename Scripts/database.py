@@ -6,6 +6,7 @@ conn = pg8000.connect(user = 'postgres',
 	password = psswd.psswd,
 	database = 'jogo')
 	
+conn.autocommit = True
 cursor = conn.cursor()
 
 class Screen():
@@ -65,7 +66,32 @@ def list_friends(email):
 		UNION
 		SELECT n2 FROM l_amizades WHERE em1 = '%s'
 	'''
+
 	return exe_query(query % (email, email))
+
+def add_friend(email1, email2):
+	query = '''
+		INSERT INTO public.Amizade
+		VALUES
+		(
+			(
+				SELECT id_jogador 
+				FROM public.Jogador
+				WHERE email = '%s'
+			),
+			(
+				SELECT id_jogador
+				FROM public.Jogador
+				WHERE email = '%s'
+			)
+		)
+	'''
+	print(query % (email1, email2))
+	try:
+		exe_query(query % (email1, email2))
+	except pg8000.exceptions.IntegrityError:
+		print("AMigo ja adicionado")
+		pass # Adicionou quem ja era amigo
 
 
 if __name__ == '__main__':
@@ -76,3 +102,5 @@ if __name__ == '__main__':
 		print("User exists")
 	else:
 		print("User not found")
+
+	add_friend('numero4@knd.com', 'email')
