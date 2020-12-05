@@ -103,4 +103,13 @@ if __name__ == '__main__':
 	else:
 		print("User not found")
 
-	add_friend('numero4@knd.com', 'email')
+	emails = [('haroldo.mansur@outlook.com'),\
+	('nino@gmail.com'),\
+	('numero4@knd.com'),\
+	('mamaefalei@gmail.com'),\
+	('horacio@panini.com.br'),\
+	('bolas@mtst.com.br'),\
+	('couvos.flor@psdb.gov.br')]
+
+	for el in emails:
+		add_friend(el, 'email')
