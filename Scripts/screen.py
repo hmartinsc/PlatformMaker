@@ -4,6 +4,7 @@ from screen_behaviour import *
 		
 if __name__ == '__main__':
 	next_screen = 'login'
+	params = {}
 	behavs = behaviours#screen_behaviour.behaviours
 	while next_screen:
 		#window, event, values = sg.read_all_windows()
@@ -13,7 +14,7 @@ if __name__ == '__main__':
 
 		print('Next screen: ', next_screen)
 
-		s = behavs[next_screen](next_screen)#Screen(behavs[next_screen])
+		s = behavs[next_screen](params)#Screen(behavs[next_screen])
 		bla = s.display()
 		next_screen = bla['next']
 		s.close()

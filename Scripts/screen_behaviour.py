@@ -6,6 +6,7 @@ class Screen():
     	
 	def __init__(self, params):
 		print("Initializing screen")
+		self.params = params#.copy()
 		#self.layout = params['layout']() # Execute function of layout
 		#self.title = params['title']
 		
@@ -40,6 +41,8 @@ class Login(Screen):
 		event, values = window.read() 
 		
 		user, psswd = values[0], values[1]
+		self.params['user'] = user
+		self.params['password'] = psswd
 
 		print('event: ', event)
 		print('values: ', values)
@@ -80,13 +83,14 @@ class Friend(Screen):
 		self.title = "Login screen"
 		super().__init__(params)
 		print("Initializing Login")
+
 	# Friend
-	def layout():
+	def layout(self):
 		#list_friends()
 		return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 
-	def window_behaviour(window):
+	def window_behaviour(self, window):
 		event, values = window.read()
 		
 		print('event: ', event)
