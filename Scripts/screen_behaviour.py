@@ -11,7 +11,7 @@ def login_layout():
 def login_behav(window):
 	event, values = window.read() 
 	
-	user, psswd = event[0], event[1]
+	user, psswd = values[0], values[1]
 
 	print('event: ', event)
 	print('values: ', values)
