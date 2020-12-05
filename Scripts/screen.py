@@ -15,6 +15,6 @@ if __name__ == '__main__':
 		print('Next screen: ', next_screen)
 
 		s = behavs[next_screen](params)#Screen(behavs[next_screen])
-		bla = s.display()
-		next_screen = bla['next']
+		next_screen = s.display()
+		#next_screen = bla['next']
 		s.close()

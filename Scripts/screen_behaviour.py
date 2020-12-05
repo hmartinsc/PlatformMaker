@@ -50,9 +50,9 @@ class Login(Screen):
 		print('passqord: ', psswd)
 
 		if user_exists(user, psswd):
-			return {'next': event}
+			return event#{'next': event}
 		else:
-			return {'next': 'login', 'params': {'bla': 1}}
+			return 'login'#{'next': 'login', 'params': {'bla': 1}}
 
 class Main(Screen):
     
@@ -98,44 +98,65 @@ class Friend(Screen):
 		
 		return event
 
-# Config
-def config_layout():
-	return [[sg.Button('Habilidades', key="main")], \
-	[sg.Button('Skins', key="config")], \
-	[sg.Button('Itens', key="friends")]]
-	
-def config_behav(window):
-	event, values = window.read()
-	
-	print('event: ', event)
-	print('values: ', values)
 
-	return event
+class Config(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
 
-# Choose level
-def choose_level_layout():
-	return [[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
-		[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
-	
-def choose_level_behav(window):
-	event, values = window.read()
-	
-	print('event: ', event)
-	print('values: ', values)
-	
-	return event
+	def layout(self):
+		return [[sg.Button('Habilidades', key="main")], \
+		[sg.Button('Skins', key="config")], \
+		[sg.Button('Itens', key="friends")]]
+		
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
 
-# Level
-def level_layout():
-	return [[sg.Button('Este é um nivel', key="main")]]
-	
-def level_behav(window):
-	event, values = window.read()
-	
-	print('event: ', event)
-	print('values: ', values)
-	
-	return event
+		return event
+
+
+class ChooseLevel(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
+
+	def layout(self):
+		return [[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
+			[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
+		
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
+
+
+class Level(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
+
+	def layout():
+		return [[sg.Button('Este é um nivel', key="main")]]
+		
+	def window_behaviour(window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
 
 
 # Transition between screens
@@ -146,5 +167,8 @@ def cond_main_to_friends(window):
 behaviours = {
 	"login": Login,
 	"main": Main,
-	"friend": Friend
+	"friends": Friend,
+	"config": Config,
+	"choose_level": ChooseLevel,
+	"level": Level
 }
