@@ -51,35 +51,48 @@ class Login(Screen):
 		else:
 			return {'next': 'login', 'params': {'bla': 1}}
 
-# Main
-def main_layout():
-	# Nao sei o que fazer com os mapas ainda
-	return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
-		[sg.Button('Amigos', key='friends')], \
-		[sg.Button('Mapas', key='main')], \
-		[sg.Button('Configuracoes', key='config')], [sg.Button('LogOut', key="login")]]
-	
-def main_behav(window):
-	event, values = window.read() 
-	
-	print('event: ', event)
-	print('values: ', values)
+class Main(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
+
+	# Main
+	def layout(self):
+		# Nao sei o que fazer com os mapas ainda
+		return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
+			[sg.Button('Amigos', key='friends')], \
+			[sg.Button('Mapas', key='main')], \
+			[sg.Button('Configuracoes', key='config')], [sg.Button('LogOut', key="login")]]
 		
-	return event
+	def window_behaviour(self, window):
+		event, values = window.read() 
+		
+		print('event: ', event)
+		print('values: ', values)
+			
+		return event
 
-# Friend
-def friend_layout():
-    #list_friends()
-	return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+class Friend(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
+	# Friend
+	def layout():
+		#list_friends()
+		return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 
-def friend_behav(window):
-	event, values = window.read()
-	
-	print('event: ', event)
-	print('values: ', values)
-	
-	return event
+	def window_behaviour(window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
 
 # Config
 def config_layout():
@@ -125,59 +138,9 @@ def level_behav(window):
 def cond_main_to_friends(window):
 	return True
 
-behaviours = {
-
-	'''"login": {
-		"title": "Login screen",
-		"layout": login_layout,
-		"behaviour": login_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	},'''
-	"main": {
-		"title": "Main screen",
-		"layout": main_layout,
-		"behaviour": main_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	},
-	"friends": {
-		"title": "Friends",
-		"layout": friend_layout,
-		"behaviour": friend_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	},
-	"config": {
-		"title": "Configurations",
-		"layout": config_layout,
-		"behaviour": config_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	},
-	"choose_level": {
-		"title": "Choose Level",
-		"layout": choose_level_layout,
-		"behaviour": choose_level_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	},
-	"level": {
-		"title": "Level",
-		"layout": level_layout,
-		"behaviour": level_behav,
-		"next_screen": [
-			{ "destination": "Friends", "condition": cond_main_to_friends }
-		]
-	}
-}
-
 
 behaviours = {
-	"login": Login
+	"login": Login,
+	"main": Main,
+	"friend": Friend
 }
