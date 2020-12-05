@@ -20,6 +20,16 @@ VALUES
 ('couvos', 'couvos', 'couvos.flor@psdb.gov.br'),
 ('nick', 'senha', 'email');
 
+CREATE TABLE IF NOT EXISTS public.Amizade(
+	id_jogador1 BIGSERIAL,
+	id_jogador2 BIGSERIAL,
+	CONSTRAINT fk_jogador1
+      FOREIGN KEY(id_jogador1) 
+	  REFERENCES public.Jogador(id_jogador),
+	CONSTRAINT fk_jogador2
+      FOREIGN KEY(id_jogador2) 
+	  REFERENCES public.Jogador(id_jogador)
+);
 
 CREATE TABLE IF NOT EXISTS item(
 	ID_item BIGSERIAL PRIMARY KEY,

@@ -18,7 +18,7 @@ class Screen():
 				print('logintime: ', params['login_time'])
 
 				if params['login_time'] \
-					and datetime.now() > params['login_time'] + timedelta(seconds=20):
+					and datetime.now() > params['login_time'] + timedelta(seconds=500):
 					
 					#import pdb; pdb.set_trace()
 					params["logged"] = False 
@@ -57,9 +57,9 @@ class Login(Screen):
 	# Login
 	def layout(self):
 		# Nao sei o que fazer com os mapas ainda
-		return [[sg.Text("Username"), sg.Input(size=(10, 10)), \
-			sg.Text("Password"), sg.Input(size=(10, 10)), \
-			sg.Button('LogIn', key="main")]]
+		return [[sg.Text("Username"), sg.Input(size=(10, 10))], \
+			[sg.Text("Password"), sg.Input(size=(10, 10))], \
+			[sg.Button('LogIn', key="main")]]
 
 	def window_behaviour(self, window):
 		event, values = window.read() 
@@ -111,7 +111,9 @@ class Friend(Screen):
 
 	# Friend
 	def layout(self):
-		#list_friends()
+		friends = list_friends(self.params['user'])
+		print('\nFRIENDS: ', friends)
+
 		return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 

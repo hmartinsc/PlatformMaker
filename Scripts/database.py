@@ -9,7 +9,7 @@ conn = pg8000.connect(user = 'postgres',
 cursor = conn.cursor()
 
 class Screen():
-    	
+		
 	def __init__(self, params):
 		self.layout = params['layout']() # Execute function of layout
 		self.title = params['title']
@@ -49,6 +49,10 @@ def add_user(username, email):
 	# Add to database
 	query = "INSERT INTO  public.jogador (nick, email) VALUES ('%s', '%s')" % (username, email)
 	exe_query(query)
+
+def list_friends(email):
+	query = "SELECT * FROM public.jogador"
+	return exe_query(query)
 
 
 if __name__ == '__main__':
