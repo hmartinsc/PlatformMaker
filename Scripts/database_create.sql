@@ -3,20 +3,21 @@
 CREATE TABLE IF NOT EXISTS public.Jogador(
 	ID_jogador BIGSERIAL PRIMARY KEY,
 	nick VARCHAR(30) NOT NULL,
-	email VARCHAR(40) NOT NULL
+	email VARCHAR(40) NOT NULL,
+	senha VARCHAR(30) NOT NULL
 );
 
 --ALTER TABLE public.Jogador ADD COLUMN ID_jogador BIGSERIAL PRIMARY KEY;
 
-INSERT INTO public.jogador  (nick, email)
+INSERT INTO public.jogador  (nick, senha, email)
 VALUES
-('noobmaster', 'haroldo.mansur@outlook.com'),
-('doutorabobrinha', 'nino@gmail.com'),
-('numero4', 'numero4@knd.com'),
-('mamaefalei', 'mamaefalei@gmail.com'),
-('horacio', 'horacio@panini.com.br'),
-('bolas', 'bolas@mtst.com.br'),
-('couvos', 'couvos.flor@psdb.gov.br');
+('noobmaster', 'noobmaster', 'haroldo.mansur@outlook.com'),
+('doutorabobrinha', 'doutorabobrinha', 'nino@gmail.com'),
+('numero4', 'numero4', 'numero4@knd.com'),
+('mamaefalei', 'mamaefalei', 'mamaefalei@gmail.com'),
+('horacio', 'horacio', 'horacio@panini.com.br'),
+('bolas', 'bolas', 'bolas@mtst.com.br'),
+('couvos', 'couvos', 'couvos.flor@psdb.gov.br');
 
 
 CREATE TABLE IF NOT EXISTS item(

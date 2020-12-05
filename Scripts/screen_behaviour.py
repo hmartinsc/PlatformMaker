@@ -1,5 +1,27 @@
 import PySimpleGUI as sg
-import database
+from database import *
+
+# Login
+def login_layout():
+	# Nao sei o que fazer com os mapas ainda
+	return [[sg.Text("Username"), sg.Input(size=(10, 10)), \
+		sg.Text("Password"), sg.Input(size=(10, 10)), \
+		sg.Button('LogIn', key="main")]]
+
+def login_behav(window):
+	event, values = window.read() 
+	
+	user, psswd = event[0], event[1]
+
+	print('event: ', event)
+	print('values: ', values)
+	print('user: ', user)
+	print('passqord: ', psswd)
+
+	if user_exists(user, psswd):
+		return event
+	else:
+		return 'login'
 
 # Main
 def main_layout():
@@ -7,7 +29,7 @@ def main_layout():
 	return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
 		[sg.Button('Amigos', key='friends')], \
 		[sg.Button('Mapas', key='main')], \
-		[sg.Button('Configuracoes', key='config')]]
+		[sg.Button('Configuracoes', key='config')], [sg.Button('LogOut', key="login")]]
 	
 def main_behav(window):
 	event, values = window.read() 
@@ -75,6 +97,14 @@ def cond_main_to_friends(window):
 
 behaviours = {
 
+	"login": {
+		"title": "Login screen",
+		"layout": login_layout,
+		"behaviour": login_behav,
+		"next_screen": [
+			{ "destination": "Friends", "condition": cond_main_to_friends }
+		]
+	},
 	"main": {
 		"title": "Main screen",
 		"layout": main_layout,

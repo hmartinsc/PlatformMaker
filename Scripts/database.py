@@ -18,8 +18,10 @@ def exe_query(query=str()):
 	return(response)
 	
 def user_exists(username, email):
-	query = "SELECT * FROM public.jogador WHERE nick = '%s' AND email = '%s'"
+	query = "SELECT * FROM public.jogador WHERE email = '%s' AND senha = '%s'"
 	print(query % (username, email))
+	#import pdb; pdb.set_trace()
+
 	result = exe_query(query % (username, email))
 	return result
 
@@ -29,7 +31,7 @@ def add_user(username, email):
 	
 	# Add to database
 	query = "INSERT INTO  public.jogador (nick, email) VALUES ('%s', '%s')" % (username, email)
-	exe_query(query)	
+	exe_query(query)
 
 
 if __name__ == '__main__':

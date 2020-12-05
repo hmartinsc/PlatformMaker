@@ -1,5 +1,4 @@
 import PySimpleGUI as sg
-import * from database
 import screen_behaviour
 
 class Screen():
@@ -20,7 +19,7 @@ class Screen():
 		self.window.close()
 		
 if __name__ == '__main__':
-	next_screen = 'main'
+	next_screen = 'login'
 	behavs = screen_behaviour.behaviours
 	while next_screen:
 		#window, event, values = sg.read_all_windows()
