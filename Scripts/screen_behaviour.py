@@ -73,7 +73,7 @@ behaviours = {
 
 	"main": {
 		"title": "Main screen",
-		"layout": main_layout(),#[[sg.Button('Jogar')], [sg.Button('Amigos')], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
+		"layout": main_layout,#[[sg.Button('Jogar')], [sg.Button('Amigos')], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
 		"behaviour": main_behav,
 		"nextScreen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }
@@ -81,7 +81,7 @@ behaviours = {
 	},
 	"friends": {
 		"title": "Friends",
-		"layout": friend_layout(),
+		"layout": friend_layout,
 		"behaviour": friend_behav,
 		"nextScreen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }
@@ -89,7 +89,7 @@ behaviours = {
 	},
 	"config": {
 		"title": "Configurations",
-		"layout": config_layout(),
+		"layout": config_layout,
 		"behaviour": config_behav,
 		"nextScreen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }
@@ -97,7 +97,7 @@ behaviours = {
 	},
 	"choose_level": {
 		"title": "Choose Level",
-		"layout": choose_level_layout(),
+		"layout": choose_level_layout,
 		"behaviour": choose_level_behav,
 		"nextScreen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }
@@ -105,7 +105,7 @@ behaviours = {
 	},
 	"level": {
 		"title": "Level",
-		"layout": level_layout(),
+		"layout": level_layout,
 		"behaviour": level_behav,
 		"nextScreen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }

@@ -5,7 +5,7 @@ import screen_behaviour
 class Screen():
 	
 	def __init__(self, params):
-		self.layout = params['layout']
+		self.layout = params['layout']() # Execute function of layout
 		self.title = params['title']
 		
 		self.window = sg.Window(self.title, self.layout) # Window Defintion
