@@ -1,10 +1,12 @@
 import PySimpleGUI as sg
 
 # Main
-def mainLayout():
-	return [[sg.Button('Jogar', key="TestKey", tooltip="clickme")], [sg.Button('Amigos', key="friends")], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
+def main_layout():
+	return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
+		[sg.Button('Amigos', key='friends')], [sg.Button('Mapas', key='main')], \
+		[sg.Button('Configuracoes', key='config')]]
 	
-def mainBehav(window):
+def main_behav(window):
 	event, values = window.read() 
 	
 	print('event: ', event)
@@ -13,10 +15,10 @@ def mainBehav(window):
 	return event
 
 # Friend
-def friendLayout():
+def friend_layout():
 	return [[sg.Button('Obrigado, amigo, vc e um amigo', key="friends")]]
 	
-def friendBehav(window):
+def friend_behav(window):
 	event, values = window.read()
 	
 	print('event: ', event)
@@ -25,22 +27,24 @@ def friendBehav(window):
 	return event
 
 # Config
-def configLayout():
-	return [[sg.Button('Button', key="next")]]
+def config_layout():
+	return [[sg.Button('Habilidades', key="main")], [sg.Button('Skins', key="main")], [sg.Button('Itens', key="main")]]
 	
-def configBehav(window):
+def config_behav(window):
 	event, values = window.read()
 	
 	print('event: ', event)
 	print('values: ', values)
+
+
 	
 	return event
 
 # Choose level
-def chooseLevelLayout():
+def choose_level_layout():
 	return [[sg.Button('Button', key="next")]]
 	
-def chooseLevelLayoutBehav(window):
+def choose_level_behav(window):
 	event, values = window.read()
 	
 	print('event: ', event)
@@ -49,10 +53,10 @@ def chooseLevelLayoutBehav(window):
 	return event
 
 # Level
-def levelLayout():
+def level_layout():
 	return [[sg.Button('Button', key="next")]]
 	
-def levelLayoutBehav(window):
+def level_behav(window):
 	event, values = window.read()
 	
 	print('event: ', event)
@@ -61,25 +65,50 @@ def levelLayoutBehav(window):
 	return event
 
 
-def condMainToFriends(window):
+# Transition between screens
+def cond_main_to_friends(window):
 	return True
 
 behaviours = {
 
 	"main": {
 		"title": "Main screen",
-		"layout": mainLayout(),#[[sg.Button('Jogar')], [sg.Button('Amigos')], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
-		"behaviour": mainBehav,
+		"layout": main_layout(),#[[sg.Button('Jogar')], [sg.Button('Amigos')], [sg.Button('Mapas')], [sg.Button('Configuracoes')]]
+		"behaviour": main_behav,
 		"nextScreen": [
-			{ "destination": "Friends", "condition": condMainToFriends }
+			{ "destination": "Friends", "condition": cond_main_to_friends }
 		]
 	},
 	"friends": {
 		"title": "Friends",
-		"layout": friendLayout(),
-		"behaviour": friendBehav,
+		"layout": friend_layout(),
+		"behaviour": friend_behav,
 		"nextScreen": [
-			{ "destination": "Friends", "condition": condMainToFriends }
+			{ "destination": "Friends", "condition": cond_main_to_friends }
+		]
+	},
+	"config": {
+		"title": "Configurations",
+		"layout": config_layout(),
+		"behaviour": config_behav,
+		"nextScreen": [
+			{ "destination": "Friends", "condition": cond_main_to_friends }
+		]
+	},
+	"choose_level": {
+		"title": "Choose Level",
+		"layout": choose_level_layout(),
+		"behaviour": choose_level_behav,
+		"nextScreen": [
+			{ "destination": "Friends", "condition": cond_main_to_friends }
+		]
+	},
+	"level": {
+		"title": "Level",
+		"layout": level_layout(),
+		"behaviour": level_behav,
+		"nextScreen": [
+			{ "destination": "Friends", "condition": cond_main_to_friends }
 		]
 	}
 }
