@@ -113,8 +113,10 @@ class Friend(Screen):
 	def layout(self):
 		friends = list_friends(self.params['user'])
 		print('\nFRIENDS: ', friends)
+		l = [[sg.Text(friend[0])] for friend in friends]
 
-		return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 
 	def window_behaviour(self, window):
