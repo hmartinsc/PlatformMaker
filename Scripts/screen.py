@@ -20,10 +20,10 @@ class Screen():
 		self.window.close()
 		
 	
-nextScreen = 'main'
+next_screen = 'main'
 behavs = screen_behaviour.behaviours
-while nextScreen:
-	print('Next screen: ', nextScreen)
-	s = Screen(behavs[nextScreen])
-	nextScreen = s.display()
+while next_screen:
+	print('Next screen: ', next_screen)
+	s = Screen(behavs[next_screen])
+	next_screen = s.display()
 	s.close()
