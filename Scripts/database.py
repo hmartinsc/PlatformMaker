@@ -8,6 +8,23 @@ conn = pg8000.connect(user = 'postgres',
 	
 cursor = conn.cursor()
 
+class Screen():
+    	
+	def __init__(self, params):
+		self.layout = params['layout']() # Execute function of layout
+		self.title = params['title']
+		
+		self.window = sg.Window(self.title, self.layout, size=(800,600)) # Window Defintion
+
+		self.window_behaviour = params['behaviour'] # Behaviour -> retorna status da tela
+		
+	def display(self):
+		#print('Displaying screen')
+		return self.window_behaviour( self.window )
+		
+	def close(self):
+		self.window.close()
+
 def exe_query(query=str()):
 	cursor.execute(query)
 	try:

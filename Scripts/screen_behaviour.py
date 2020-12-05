@@ -1,27 +1,55 @@
 import PySimpleGUI as sg
 from database import *
 
-# Login
-def login_layout():
-	# Nao sei o que fazer com os mapas ainda
-	return [[sg.Text("Username"), sg.Input(size=(10, 10)), \
-		sg.Text("Password"), sg.Input(size=(10, 10)), \
-		sg.Button('LogIn', key="main")]]
 
-def login_behav(window):
-	event, values = window.read() 
-	
-	user, psswd = values[0], values[1]
+class Screen():
+    	
+	def __init__(self, params):
+		print("Initializing screen")
+		#self.layout = params['layout']() # Execute function of layout
+		#self.title = params['title']
+		
+		#import pdb; pdb.set_trace()
 
-	print('event: ', event)
-	print('values: ', values)
-	print('user: ', user)
-	print('passqord: ', psswd)
+		self.window = sg.Window(self.title, self.layout(), size=(800,600)) # Window Defintion
 
-	if user_exists(user, psswd):
-		return event
-	else:
-		return 'login'
+		#self.window_behaviour = params['behaviour'] # Behaviour -> retorna status da tela
+		
+	def display(self):
+		#print('Displaying screen')
+		return self.window_behaviour( self.window )
+		
+	def close(self):
+		self.window.close()
+
+class Login(Screen):
+    
+	def __init__(self, params):
+		self.title = "Login screen"
+		super().__init__(params)
+		print("Initializing Login")
+
+	# Login
+	def layout(self):
+		# Nao sei o que fazer com os mapas ainda
+		return [[sg.Text("Username"), sg.Input(size=(10, 10)), \
+			sg.Text("Password"), sg.Input(size=(10, 10)), \
+			sg.Button('LogIn', key="main")]]
+
+	def window_behaviour(self, window):
+		event, values = window.read() 
+		
+		user, psswd = values[0], values[1]
+
+		print('event: ', event)
+		print('values: ', values)
+		print('user: ', user)
+		print('passqord: ', psswd)
+
+		if user_exists(user, psswd):
+			return {'next': event}
+		else:
+			return {'next': 'login', 'params': {'bla': 1}}
 
 # Main
 def main_layout():
@@ -41,8 +69,10 @@ def main_behav(window):
 
 # Friend
 def friend_layout():
+    #list_friends()
 	return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
-	
+
+
 def friend_behav(window):
 	event, values = window.read()
 	
@@ -97,14 +127,14 @@ def cond_main_to_friends(window):
 
 behaviours = {
 
-	"login": {
+	'''"login": {
 		"title": "Login screen",
 		"layout": login_layout,
 		"behaviour": login_behav,
 		"next_screen": [
 			{ "destination": "Friends", "condition": cond_main_to_friends }
 		]
-	},
+	},'''
 	"main": {
 		"title": "Main screen",
 		"layout": main_layout,
@@ -145,4 +175,9 @@ behaviours = {
 			{ "destination": "Friends", "condition": cond_main_to_friends }
 		]
 	}
+}
+
+
+behaviours = {
+	"login": Login
 }

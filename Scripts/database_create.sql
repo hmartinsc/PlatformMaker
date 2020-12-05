@@ -17,7 +17,8 @@ VALUES
 ('mamaefalei', 'mamaefalei', 'mamaefalei@gmail.com'),
 ('horacio', 'horacio', 'horacio@panini.com.br'),
 ('bolas', 'bolas', 'bolas@mtst.com.br'),
-('couvos', 'couvos', 'couvos.flor@psdb.gov.br');
+('couvos', 'couvos', 'couvos.flor@psdb.gov.br'),
+('nick', 'senha', 'email');
 
 
 CREATE TABLE IF NOT EXISTS item(
