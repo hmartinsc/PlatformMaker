@@ -1,13 +1,13 @@
---CREATE DATABASE jogo;
+--create DATABASE jogo;
 
-CREATE TABLE IF NOT EXISTS public.Jogador(
+create table if not exists public.Jogador(
 	ID_jogador BIGSERIAL PRIMARY KEY,
-	nick VARCHAR(30) NOT NULL,
-	email VARCHAR(40) NOT NULL,
-	senha VARCHAR(30) NOT NULL
+	nick VARCHAR(30) not NULL,
+	email VARCHAR(40) not NULL,
+	senha VARCHAR(30) not NULL
 );
 
---ALTER TABLE public.Jogador ADD COLUMN ID_jogador BIGSERIAL PRIMARY KEY;
+--ALTER table public.Jogador ADD COLUMN ID_jogador BIGSERIAL PRIMARY KEY;
 
 INSERT INTO public.jogador  (nick, senha, email)
 VALUES
@@ -20,7 +20,7 @@ VALUES
 ('couvos', 'couvos', 'couvos.flor@psdb.gov.br'),
 ('nick', 'senha', 'email');
 
-CREATE TABLE IF NOT EXISTS public.Amizade(
+create table if not exists public.Amizade(
 	id_jogador1 BIGSERIAL,
 	id_jogador2 BIGSERIAL,
 	CONSTRAINT fk_jogador1
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS public.Amizade(
 INSERT INTO public.Amizade(id_jogador1, id_jogador2)
 VALUES (1, 2), (2, 4), (2, 1), (3, 4);
 
-CREATE TABLE IF NOT EXISTS item(
+create table if not exists item(
 	ID_item BIGSERIAL PRIMARY KEY,
 	ID_jogador BIGSERIAL REFERENCES public.jogador(ID_Jogador)
 );
@@ -62,7 +62,10 @@ create table if not exists public.item(
 	poder double precision
 );
 
-
+create table if not exists public.conquista(
+	id_conquista BIGINT PRIMARY KEY,
+	descricao VARCHAR(200) not null
+);
 
 create table if not exists public.permissao(
 	id_permissao bigint primary key,
@@ -132,5 +135,195 @@ create table if not exists public.fala(
 	id_fala bigint primary key,
 	descricao varchar(100) not null,
 	local_arquivo varchar(100) not null
+);
+
+create table if not exists public.habilidade_permissao(
+	id_habilidade bigserial,
+	id_permissao bigserial,
+	constraint fk_habilidade
+		foreign key(id_habilidade)
+		references public.habilidade(id_habilidade),
+	constraint fk_permissao
+		foreign key(id_permissao)
+		references public.permissao(id_permissao)
+);
+
+create table if not exists public.habilidade_jogador(
+	id_habilidade bigserial,
+	id_jogador bigserial,
+	habilitado boolean,
+	constraint fk_habilidade
+		foreign key(id_habilidade)
+		references public.habilidade(id_habilidade),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.item_jogador(
+	id_item bigserial,
+	id_jogador bigserial,
+	constraint fk_item
+		foreign key(id_item)
+		references public.item(id_item),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.item_jogador(
+	id_item bigserial,
+	id_jogador bigserial,
+	constraint fk_item
+		foreign key(id_item)
+		references public.item(id_item),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.efeito_sonoro_conquista(
+	id_conquista bigserial,
+	id_efeito bigserial,
+	constraint fk_conquista
+		foreign key(id_conquista)
+		references public.conquista(id_conquista),
+	constraint fk_efeito
+		foreign key(id_efeito)
+		references public.efeito_sonoro(id_efeito)
+);
+
+create table if not exists public.conquista_jogador(
+	id_conquista bigserial,
+	id_jogador bigserial,
+	constraint fk_conquista
+		foreign key(id_conquista)
+		references public.conquista(id_conquista),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.progresso_jogador(
+	id_progresso bigserial,
+	id_jogador bigserial,
+	pontuacao int not null,
+	data_progresso date not null,
+	constraint fk_progresso
+		foreign key(id_progresso)
+		references public.progresso(id_progresso),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.requisito_habilidade(
+	id_habilidade bigserial,
+	id_requisito bigserial,
+	constraint fk_habilidade
+		foreign key(id_habilidade)
+		references public.habilidade(id_habilidade),
+	constraint fk_requisito
+		foreign key(id_requisito)
+		references public.habilidade(id_habilidade)
+);
+
+create table if not exists public.requisito_habilidade(
+	id_habilidade bigserial,
+	id_requisito bigserial,
+	constraint fk_habilidade
+		foreign key(id_habilidade)
+		references public.habilidade(id_habilidade),
+	constraint fk_requisito
+		foreign key(id_requisito)
+		references public.habilidade(id_habilidade)
+);
+
+create table if not exists public.musica_mapa(
+	id_musica bigserial,
+	id_mapa bigserial,
+	constraint fk_musica
+		foreign key(id_musica)
+		references public.musica(id_musica),
+	constraint fk_mapa
+		foreign key(id_mapa)
+		references public.mapa(id_mapa)
+);
+
+create table if not exists public.objeto_mapa(
+	id_objeto bigserial,
+	id_mapa bigserial,
+	constraint fk_objeto
+		foreign key(id_objeto)
+		references public.objeto_cenario(id_objeto_cenario),
+	constraint fk_mapa
+		foreign key(id_mapa)
+		references public.mapa(id_mapa)
+);
+
+create table if not exists public.requisito_mapa(
+	id_mapa bigserial,
+	id_requisito bigserial,
+	constraint fk_mapa
+		foreign key(id_mapa)
+		references public.mapa(id_mapa),
+	constraint fk_requisito
+		foreign key(id_requisito)
+		references public.mapa(id_mapa)
+);
+
+create table if not exists public.personagem_mapa(
+	id_mapa bigserial,
+	id_personagem bigserial,
+	constraint fk_mapa
+		foreign key(id_mapa)
+		references public.mapa(id_mapa),
+	constraint fk_personagem
+		foreign key(id_personagem)
+		references public.personagem(id_personagem)
+);
+
+create table if not exists public.fala_personagem(
+	id_fala bigserial,
+	id_personagem bigserial,
+	constraint fk_fala
+		foreign key(id_fala)
+		references public.fala(id_fala),
+	constraint fk_personagem
+		foreign key(id_personagem)
+		references public.personagem(id_personagem)
+);
+
+create table if not exists public.skin_personagem(
+	id_skin bigserial,
+	id_personagem bigserial,
+	constraint fk_skin
+		foreign key(id_skin)
+		references public.skin(id_skin),
+	constraint fk_personagem
+		foreign key(id_personagem)
+		references public.personagem(id_personagem)
+);
+
+create table if not exists public.skin_jogador(
+	id_skin bigserial,
+	id_jogador bigserial,
+	constraint fk_skin
+		foreign key(id_skin)
+		references public.skin(id_skin),
+	constraint fk_jogador
+		foreign key(id_jogador)
+		references public.jogador(id_jogador)
+);
+
+create table if not exists public.skin_objeto(
+	id_skin bigserial,
+	id_objeto bigserial,
+	constraint fk_skin
+		foreign key(id_skin)
+		references public.skin(id_skin),
+	constraint fk_objeto
+		foreign key(id_objeto)
+		references public.objeto_cenario(id_objeto_cenario)
 );
 

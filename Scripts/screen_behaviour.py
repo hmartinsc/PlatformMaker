@@ -92,14 +92,18 @@ class Main(Screen):
 		return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
 			[sg.Button('Amigos', key='friends')], \
 			[sg.Button('Mapas', key='main')], \
-			[sg.Button('Configuracoes', key='config')], [sg.Button('LogOut', key="login")]]
+			[sg.Button('Configuracoes', key='config')], \
+			[sg.Button('LogOut', key="login")]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read() 
 		
 		print('event: ', event)
 		print('values: ', values)
-			
+		
+		if event == 'login':
+			self.params['logged'] = False
+
 		return event
 
 class Friend(Screen):

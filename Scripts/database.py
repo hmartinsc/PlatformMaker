@@ -66,7 +66,7 @@ def list_friends(email):
 		UNION
 		SELECT n2 FROM l_amizades WHERE em1 = '%s'
 	'''
-
+	print(query % (email, email))
 	return exe_query(query % (email, email))
 
 def add_friend(email1, email2):
