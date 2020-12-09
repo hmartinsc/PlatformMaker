@@ -1,5 +1,6 @@
 import pg8000
 import psswd
+from playsound import playsound
 
 conn = pg8000.connect(user='postgres',
                       host='localhost',
@@ -100,6 +101,28 @@ def add_friend(email1, email2):
     except pg8000.exceptions.IntegrityError:
         print("AMigo ja adicionado")
         pass  # Adicionou quem ja era amigo
+
+def add_song(name, author, artist, file_path):
+    # TODO: Add withou pass id
+
+    # Add to database
+    query = "INSERT INTO  public.musica (nome, autor, artista, local_arquivo) VALUES ('%s', '%s', '%s', '%s')" % (
+        name, author, artist, file_path)
+    exe_query(query)
+    
+def list_songs():
+
+    query = "select nome from efeito_sonoro"
+    
+    return exe_query(query)
+    
+def get_song(name):
+    query = "select local_arquivo from efeito_sonoro where nome = '%s'"
+    
+    song_path = exe_query(query % (name))[0]
+    
+    
+    playsound(song_path[0])
 
 
 if __name__ == '__main__':
