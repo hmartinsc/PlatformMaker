@@ -89,6 +89,20 @@ def list_items(id_jogador):
 	'''
     print(query % (id_jogador))
     return exe_query(query % (id_jogador))
+    
+    def list_habilidades(id_jogador):
+    query = '''
+		SELECT h.tipo, h.poder
+		FROM public.habilidade h
+		INNER JOIN public.habilidade_jogador hj
+		ON hj.id_habilidade = h.id_habilidade
+		INNER JOIN public.jogador j
+		ON hj.id_jogador = j.id_jogador
+		WHERE id_jogador = '%s' AND hj.habilitado = true
+	'''
+    print(query % (id_jogador))
+    return exe_query(query % (id_jogador))
+
 
 def add_friend(email1, email2):
     query = '''

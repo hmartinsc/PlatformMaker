@@ -53,17 +53,6 @@ VALUES
 (2, 1),
 (3, 4);
 
-create table if not exists item(
-	ID_item BIGSERIAL PRIMARY KEY,
-	ID_jogador BIGSERIAL REFERENCES public.jogador(ID_Jogador)
-);
-
-SELECT j.id_jogador, j.nick, j.email, i.id_item
-FROM public.jogador j
-inner join public.item i
-on j.id_jogador = i.id_jogador;
-
-
 create table if not exists public.efeito_sonoro(
 	id_efeito BIGINT PRIMARY KEY,
 	local_arquivo VARCHAR(100) not null,
@@ -114,18 +103,43 @@ VALUES
 (9, 'Derrorou 100 inimigos'),
 (10, 'Nao pegou nenhuma REC');
 
-
 create table if not exists public.permissao(
 	id_permissao bigint primary key,
 	tipo varchar(30) not null,
 	descricao varchar(100)
 );
 
+INSERT INTO Public.permissao (id_permissao, tipo, descricao)
+VALUES 
+(1, 'Poder', 'Super soco'),
+(2, 'Poder', 'Invisibilidade'),
+(3, 'Poder', 'Fogo pelos olhos'),
+(4, 'Poder', 'Cospir fogo'),
+(5, 'Poder', 'Super velocidade'),
+(6, 'Poder', 'Magia'),
+(7, 'Habilidade', 'Voar'),
+(8, 'Habilidade', 'Nadar'),
+(9, 'Habilidade', 'Andar sobre as aguas'),
+(10, 'Habilidade', 'Pulo duplo');
+
 create table if not exists public.habilidade(
 	id_habilidade bigint primary key,
 	tipo varchar(30) not null,
 	poder double precision
 );
+
+INSERT INTO Public.habilidade (id_habilidade, tipo, poder)
+VALUES 
+(1, 'Super soco', 200.0),
+(2, 'Invisibilidade', 200.0),
+(3, 'Fogo pelos olhos', 200.0),
+(4, 'Cospir fogo', 200.0),
+(5, 'Super velocidade', 200.0),
+(6, 'Magia', 200.0),
+(7, 'Gelo pela boca', 200.0),
+(8, 'Soco duplo', 200.0),
+(9, 'Punho de aço', 200.0),
+(10, 'Socão', 200.0);
 
 create table if not exists public.progresso(
 	id_progresso bigint primary key,
@@ -134,6 +148,19 @@ create table if not exists public.progresso(
 		constraint porcentagem_maior_zero check (porcentagem_conclusao > 0.0)
 );
 
+INSERT INTO public.progresso(id_progresso, porcentagem_conclusao)
+VALUES 
+(1, 90.0),
+(2, 40.0),
+(3, 10.0),
+(4, 20.0),
+(5, 40.0),
+(6, 10.0),
+(7, 20.0),
+(8, 40.0),
+(9, 10.0),
+(10, 20.0);
+
 create table if not exists public.musica(
 	id_musica bigint primary key,
 	nome varchar(70) not null,
@@ -141,6 +168,19 @@ create table if not exists public.musica(
 	artista varchar(70) not null,
 	local_arquivo varchar(100) not null
 );
+
+INSERT INTO public.musica(id_musica, nome, autor, artista, local_arquivo)
+VALUES 
+(1, 'balada', 'mario', 'pedro', 'files/musics/balada.wav'),
+(2, 'forro', 'mario', 'pedro', 'files/musics/forro.wav'),
+(3, 'triste', 'mario', 'pedro', 'files/musics/triste.wav'),
+(4, 'tururu', 'mario', 'pedro', 'files/musics/tururu.wav'),
+(5, 'bla', '', 'mario', 'pedro', 'files/musics/bla.wav'),
+(6, 'tutistutis', 'mario', 'pedro', 'files/musics/tutistutis.wav'),
+(7, 'sofrencia', 'mario', 'pedro', 'files/musics/sofrencia.wav'),
+(8, 'gospel', 'mario', 'pedro', 'files/musics/gospel.wav'),
+(9, 'rock', 'mario', 'pedro', 'files/musics/rock.wav'),
+(10, 'pop', 'mario', 'pedro', 'files/musics/pop.wav');
 
 create table if not exists public.mapa(
 	id_mapa bigint primary key,
@@ -245,6 +285,39 @@ create table if not exists public.habilidade_jogador(
 		foreign key(id_jogador)
 		references public.jogador(id_jogador)
 );
+
+INSERT INTO Public.habilidade_jogador (id_jogador, id_habilidade, habilitado)
+VALUES 
+(12, 1, true),
+(12, 2, true),
+(12, 3, true),
+(12, 4, true),
+(12, 7, true),
+(12, 6, true),
+(13, 8, true),
+(13, 9, true),
+(13, 10, true),
+(14, 5, true),
+(14, 7, true),
+(14, 8, true),
+(15, 3, true),
+(15, 4, true),
+(15, 5, true),
+(16, 1, true),
+(16, 2, true),
+(16, 3, true),
+(17, 4, true),
+(17, 6, true),
+(17, 7, true),
+(18, 8, true),
+(18, 9, true),
+(18, 6, true),
+(19, 4, true),
+(19, 3, true),
+(19, 2, true),
+(19, 1, true),
+(19, 4, true),
+(19, 6, true);
 
 create table if not exists public.item_jogador(
 	id_item bigserial,
