@@ -497,6 +497,39 @@ create table if not exists public.skin_jogador(
 		references public.jogador(id_jogador)
 );
 
+INSERT INTO Public.skin_jogador (id_jogador, id_skin)
+VALUES 
+(12, 1),
+(12, 2),
+(12, 3),
+(12, 4),
+(12, 7),
+(12, 6),
+(13, 8),
+(13, 9),
+(13, 10),
+(14, 5),
+(14, 7),
+(14, 8),
+(15, 3),
+(15, 4),
+(15, 5),
+(16, 1),
+(16, 2),
+(16, 3),
+(17, 4),
+(17, 6),
+(17, 7),
+(18, 8),
+(18, 9),
+(18, 6),
+(19, 4),
+(19, 3),
+(19, 2),
+(19, 1),
+(19, 4),
+(19, 6);
+
 create table if not exists public.skin_objeto(
 	id_skin bigserial,
 	id_objeto bigserial,

@@ -103,6 +103,18 @@ def list_habilidades(id_jogador):
     print(query % (id_jogador))
     return exe_query(query % (id_jogador))
 
+def list_skins_jogador(id_jogador):
+    query = '''
+		SELECT s.nome_textura, s.local_arquivo
+		FROM public.skin s
+		INNER JOIN public.skin_jogador sj
+		ON sj.id_skin = s.id_skin
+		INNER JOIN public.jogador j
+		ON sj.id_jogador = j.id_jogador
+		WHERE j.id_jogador = '%s'
+	'''
+    print(query % (id_jogador))
+    return exe_query(query % (id_jogador))
 
 def add_friend(email1, email2):
     query = '''
