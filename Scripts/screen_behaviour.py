@@ -31,7 +31,7 @@ class Screen():
 		
 		#import pdb; pdb.set_trace()
 
-		self.window = sg.Window(self.title, self.layout(), size=(1200,900)) # Window Defintion
+		self.window = sg.Window(self.title, self.layout(), size=(1200,800)) # Window Defintion
 
 		#self.window_behaviour = params['behaviour'] # Behaviour -> retorna status da tela
 		
@@ -49,7 +49,7 @@ class Screen():
 class Login(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Login"
 		super().__init__(params)
 		params['login_time'] = datetime.now()
 		print("Initializing Login")
@@ -57,8 +57,8 @@ class Login(Screen):
 	# Login
 	def layout(self):
 		# Nao sei o que fazer com os mapas ainda
-		return [[sg.Text("Username"), sg.Input(size=(10, 40))], \
-			[sg.Text("Password"), sg.Input(size=(10, 40))], \
+		return [[sg.Text("Username"), sg.Input(), sg.Text()], \
+			[sg.Text("Password"), sg.Input()], \
 			[sg.Button('LogIn', key="main")]]
 
 	def window_behaviour(self, window):
@@ -84,14 +84,14 @@ class Login(Screen):
 class Main(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Main"
 		super().__init__(params)
 		print("Initializing Login")
 
 	# Main
 	def layout(self):
 		# Nao sei o que fazer com os mapas ainda
-		return [[sg.Button('Jogar', key="personagem", tooltip="clickme")], \
+		return [[sg.Button('Personagens', key="personagem", tooltip="clickme")], \
 			[sg.Button('Amigos', key='friends')], \
 			[sg.Button('Mapas', key='maps')], \
 			[sg.Button('Configuracoes', key='config')], \
@@ -112,7 +112,7 @@ class Main(Screen):
 class Musicas(Screen):
     	
 	def __init__(self, params):
-		self.title = "Musicas screen"
+		self.title = "Musicas"
 		super().__init__(params)
 
 	# Main
@@ -150,7 +150,7 @@ class Musicas(Screen):
 class Habilidades(Screen):
     	
 	def __init__(self, params):
-		self.title = "Habilidades screen"
+		self.title = "Habilidades"
 		super().__init__(params)
 
 	# Main
@@ -179,9 +179,9 @@ class Habilidades(Screen):
 class Friend(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Friends"
 		super().__init__(params)
-		print("Initializing Login")
+		print("Initializing firends")
 
 	# Friend
 	def layout(self):
@@ -205,7 +205,7 @@ class Friend(Screen):
 class Maps(Screen):
 	
 	def __init__(self, params):
-		self.title = "Maps screen"
+		self.title = "Maps"
 		super().__init__(params)
 		print("Initializing maps")
 
@@ -214,7 +214,7 @@ class Maps(Screen):
 		friends = list_friends(self.params['user'])
 		print('\nFRIENDS: ', friends)
 		maps = list_maps()
-		l = [[sg.Button(m[0], tooltip=m[1])] for m in maps]
+		l = [[sg.Text(m[0], tooltip=m[1])] for m in maps]
 
 		return l + [[sg.Button("Back", key="main")]]
 		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
@@ -232,7 +232,7 @@ class Maps(Screen):
 class Items(Screen):
 	
 	def __init__(self, params):
-		self.title = "Items screen"
+		self.title = "Items"
 		super().__init__(params)
 		print("Initializing items")
 
@@ -245,7 +245,7 @@ class Items(Screen):
 		print(items)
 		l = [[sg.Text(item[0], tooltip="Poder: " + str(item[1]))] for item in items]
 
-		return l + [[sg.Button("Back", key="main")]]
+		return l + [[sg.Button("Back", key="config")]]
 		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 
@@ -261,7 +261,7 @@ class Items(Screen):
 class Skin(Screen):
 	
 	def __init__(self, params):
-		self.title = "SKins screen"
+		self.title = "Skins"
 		super().__init__(params)
 		print("Initializing skins")
 
@@ -278,7 +278,7 @@ class Skin(Screen):
 		l = [[sg.Text(item[1], tooltip="Cor: " + item[0]), sg.Image(item[2])] for item in skins]
 		 
 
-		return l + [[sg.Button("Back", key="main")]]
+		return [[sg.Button("Back", key="config")]] + l
 		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 
 
@@ -294,7 +294,7 @@ class Skin(Screen):
 class Config(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Configs"
 		super().__init__(params)
 		print("Initializing Login")
 
@@ -317,7 +317,7 @@ class Config(Screen):
 class Personagem(Screen):
 	
 	def __init__(self, params):
-		self.title = "Personagem screen"
+		self.title = "Personagens"
 		super().__init__(params)
 		print("Initializing personagem")
 
@@ -342,9 +342,9 @@ class Personagem(Screen):
 class Level(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Levels"
 		super().__init__(params)
-		print("Initializing Login")
+		print("Initializing level")
 
 	def layout():
 		return [[sg.Button('Este é um nivel', key="main")]]
