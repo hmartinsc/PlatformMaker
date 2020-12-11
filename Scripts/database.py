@@ -181,9 +181,10 @@ def list_songs():
 def get_song(name):
     query = "select local_arquivo from efeito_sonoro where nome = '%s'"
     
-    song_path = exe_query(query % (name))[0]    
+    song_path = exe_query(query % (name))
     
-    playsound(song_path[0])
+    if len(song_path) > 0:
+        playsound(song_path[0][0])
 
 
 if __name__ == '__main__':

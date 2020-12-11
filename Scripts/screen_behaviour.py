@@ -160,7 +160,7 @@ class Habilidades(Screen):
 		id_jogador = self.params['jogador'][0][0]
 		items = list_habilidades(id_jogador)
 		print(items)
-		l = [[sg.Text(item[0], tooltip="Bla: " + str(item[1]))] for item in items]
+		l = [[sg.Text(item[0], tooltip="Poder: " + str(item[1]))] for item in items]
 
 		return l + [[sg.Button("Back", key="main")]]
 		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
@@ -169,10 +169,7 @@ class Habilidades(Screen):
 		event, values = window.read()
 		
 		print('event: ', event)
-		print('values: ', values)
-		
-		get_song(event)
-		
+		print('values: ', values)		
 		
 		if event == 'login':
 			self.params['logged'] = False
