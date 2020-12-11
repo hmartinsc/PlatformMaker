@@ -105,7 +105,7 @@ def list_habilidades(id_jogador):
 
 def list_skins_jogador(id_jogador):
     query = '''
-		SELECT s.nome_textura, s.local_arquivo
+		SELECT s.cor_principal, s.nome_textura, s.local_arquivo
 		FROM public.skin s
 		INNER JOIN public.skin_jogador sj
 		ON sj.id_skin = s.id_skin

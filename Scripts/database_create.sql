@@ -97,7 +97,7 @@ VALUES
 (3, 'Conseguiu 10 records de cenários'),
 (4, 'Jogu mais de 100 horas de jogo'),
 (5, 'Tem mais de 20 amigos no multiplayer'),
-(6, 'Possui 10 skins')
+(6, 'Possui 10 skins'),
 (7, 'Conseguiu todos os poderes'),
 (8, 'Fez mais de 10 mapas'),
 (9, 'Derrorou 100 inimigos'),

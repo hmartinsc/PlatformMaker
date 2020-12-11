@@ -271,7 +271,7 @@ class Skin(Screen):
 		print("\n"*10)
 		#print(self.params)
 		id_jogador = self.params['jogador'][0][0]
-		skins = list_skins()
+		skins = list_skins_jogador(id_jogador)
 		print(skins)
 
 
