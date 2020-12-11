@@ -133,7 +133,7 @@ class Habilidades(Screen):
 		if event == 'login':
 			self.params['logged'] = False
 
-		return event
+		return 'config'
 
 class Friend(Screen):
 	
@@ -169,7 +169,7 @@ class Config(Screen):
 		print("Initializing Login")
 
 	def layout(self):
-		return [[sg.Button('Habilidades', key="habilidades")], \
+		return [[sg.Button('Efeitos sonoros', key="habilidades")], \
 		[sg.Button('Skins', key="config")], \
 		[sg.Button('Itens', key="friends")]]
 		
