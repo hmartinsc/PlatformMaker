@@ -106,7 +106,22 @@ def list_maps():
     query = '''
 		SELECT nome_mapa, descricao, preco
 		FROM public.mapa
-	
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_characters():
+    query = '''
+		SELECT nome, descricao, e_inimigo, preco
+		FROM public.personagem
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_skins():
+    query = '''
+		SELECT cor_principal, nome_textura, local_arquivo, preco
+		FROM public.skin
 	'''
     print(query)
     return exe_query(query)

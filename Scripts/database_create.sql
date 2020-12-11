@@ -140,6 +140,18 @@ create table if not exists public.skin(
 		constraint preco_positivo check (preco > 0)
 );
 
+INSERT INTO Public.skin (id_skin, cor_principal, nome_textura, local_arquivo, preco)
+VALUES 
+(1, 'Branco', 'Bomba da paz', 'files\skins\pomba.png', 0.0),
+(2, 'Verde', 'Arvore', 'files\skins\arvore.png', 1.0), 
+(3, 'Preto', 'Grafite', 'files\skins\grafite.png', 5.0),
+(4, 'Vermelho', 'Sangue', 'files\skins\sangue.png', 15.0),
+(5, 'Roxo', 'Beringela', 'files\skins\roxo.png', 0.0),
+(6, 'Azul', 'Baleia', 'files\skins\baleia.png', 1.0),
+(7, 'Branco', 'Toalha', 'files\skins\toalha.png', 1.1),
+(8, 'Azul', 'Tomate', 'files\skins\tomate.png', 1.5),
+(9, 'Amarelo', 'Raio', 'files\skins\raio.png', 1.5),
+(10, 'Vermelho', 'Melancia', 'files\skins\melancia.png', 0.0);
 
 create table if not exists public.personagem(
 	id_personagem bigint primary key,
@@ -149,6 +161,19 @@ create table if not exists public.personagem(
 	preco double precision default 0.0 
 		constraint preco_positivo check (preco > 0)
 );
+
+INSERT INTO Public.personagem (id_personagem, nome, descricao, e_inimigo, preco)
+VALUES 
+(1, 'Boulos', 'Cuidado Boulos pode invadir o seu cenário', 0, 0.0),
+(2, 'Seu Madruga', 'Para pagar os 14 meses de aluguel, Seu Madruga faz tudo, menos trabalhar', 0, 1.0), 
+(3, 'Pica Pau', 'Pica Pau é tão irritante que vai fazer você desistir do jogo', 1, 5.0),
+(4, 'Kratos', 'O Bom de Guerra, ,Kratos mata seus inimigos sem a menor misericódia', 0, 15.0),
+(5, 'MC Mirela', 'Com seu falsete desconcetra qualquer inimigo', 1, 0.0),
+(6, 'Pepe e Nenem', 'Por que voce nao vem ficar comigo, baby?', 1, 1.0),
+(7, 'Dona Benta', 'Faça bolos para a criançada', 0, 1.1),
+(8, 'Zeus', 'Joga raio e mata gente', 1, 1.5),
+(9, 'Dona Florinda', 'Com seu super tapa derrota qualquer inimigo', 0, 1.5),
+(10, 'Professor Girafales', 'TA TA TA TA TA',1 , 0.0);
 
 create table if not exists public.fala(
 	id_fala bigint primary key,
