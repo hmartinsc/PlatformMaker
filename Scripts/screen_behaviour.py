@@ -106,6 +106,34 @@ class Main(Screen):
 			self.params['logged'] = False
 
 		return event
+		
+class Habilidades(Screen):
+	
+	def __init__(self, params):
+		self.title = "Habilidades screen"
+		super().__init__(params)
+
+	# Main
+	def layout(self):
+		self.songs = list_songs()		
+		l = [[sg.Button(song[0]) for song in self.songs]]
+	
+		# Nao sei o que fazer com os mapas ainda
+		return l#[[sg.Button('Jogar', key="choose_level", tooltip="clickme")]]
+		
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		get_song(event)
+		
+		
+		if event == 'login':
+			self.params['logged'] = False
+
+		return event
 
 class Friend(Screen):
 	
@@ -141,7 +169,7 @@ class Config(Screen):
 		print("Initializing Login")
 
 	def layout(self):
-		return [[sg.Button('Habilidades', key="main")], \
+		return [[sg.Button('Habilidades', key="habilidades")], \
 		[sg.Button('Skins', key="config")], \
 		[sg.Button('Itens', key="friends")]]
 		
@@ -162,8 +190,8 @@ class ChooseLevel(Screen):
 		print("Initializing Login")
 
 	def layout(self):
-		return [[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
-			[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
+		return [sg.Button('Voltar', key='main')]#[[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
+			#[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read()
@@ -204,5 +232,6 @@ behaviours = {
 	"friends": Friend,
 	"config": Config,
 	"choose_level": ChooseLevel,
-	"level": Level
+	"level": Level,
+	"habilidades": Habilidades
 }

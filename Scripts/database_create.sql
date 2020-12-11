@@ -57,10 +57,10 @@ create table if not exists public.efeito_sonoro(
 );
 
 INSERT INTO Public.efeito_sonoro (id_efeito, local_arquivo, descricao, nome)
-VALUES (4, 'files\songs\smb_gameover.wav', 'Som de fim de jogo', 'Game Over'),
-	   (3, 'files\songs\smb_mariodie.wav', 'Som de morte', 'Morte'),
-	   (2, 'files\songs\smb_stage_clear.wav', 'Som de fase finalizada', 'Fim'),
-	   (1, 'files\songs\smb_warning.wav', 'Som de aviso', 'Aviso');
+VALUES (4, 'files/songs/smb_gameover.wav', 'Som de fim de jogo', 'Game Over'),
+	   (3, 'files/songs/smb_mariodie.wav', 'Som de morte', 'Morte'),
+	   (2, 'files/songs/smb_stage_clear.wav', 'Som de fase finalizada', 'Fim'),
+	   (1, 'files/songs/smb_warning.wav', 'Som de aviso', 'Aviso');
 
 create table if not exists public.item(
 	id_item BIGINT PRIMARY KEY,
