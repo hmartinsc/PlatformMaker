@@ -101,6 +101,15 @@ def add_friend(email1, email2):
     except pg8000.exceptions.IntegrityError:
         print("AMigo ja adicionado")
         pass  # Adicionou quem ja era amigo
+        
+def list_maps():
+    query = '''
+		SELECT nome_mapa, descricao, preco
+		FROM public.mapa
+	
+	'''
+    print(query % (email, email))
+    return exe_query(query % (email, email))
 
 def add_song(name, author, artist, file_path):
     # TODO: Add withou pass id
