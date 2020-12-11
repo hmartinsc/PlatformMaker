@@ -77,7 +77,7 @@ def list_friends(email):
     print(query % (email, email))
     return exe_query(query % (email, email))
      
-def list_itens(id_jogador):
+def list_items(id_jogador):
     query = '''
 		SELECT i.material, i.poder
 		FROM public.item i
@@ -85,7 +85,7 @@ def list_itens(id_jogador):
 		ON ij.id_item = i.id_item
 		INNER JOIN public.jogador j
 		ON ij.id_jogador = j.id_jogador
-		WHERE id_jogador = '%s'
+		WHERE j.id_jogador = '%s'
 	'''
     print(query % (id_jogador))
     return exe_query(query % (id_jogador))

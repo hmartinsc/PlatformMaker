@@ -73,7 +73,9 @@ class Login(Screen):
 		print('user: ', user)
 		print('passqord: ', psswd)
 
-		if user_exists(user, psswd):
+		bla = user_exists(user, psswd)
+		if bla:
+			self.params['jogador'] = bla
 			self.params['logged'] = True
 			return event#{'next': event}
 		else:
@@ -186,6 +188,35 @@ class Maps(Screen):
 		print('values: ', values)
 		
 		return event
+		
+
+class Items(Screen):
+	
+	def __init__(self, params):
+		self.title = "Items screen"
+		super().__init__(params)
+		print("Initializing items")
+
+	# Friend
+	def layout(self):
+    	
+		print(self.params)
+		id_jogador = self.params['jogador'][0][0]
+		items = list_items(id_jogador)
+		print(items)
+		l = [[sg.Text(item[0], tooltip="Poder: " + str(item[1]))] for item in items]
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+
+
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
 
 
 class Config(Screen):
@@ -198,7 +229,7 @@ class Config(Screen):
 	def layout(self):
 		return [[sg.Button('Efeitos sonoros', key="habilidades")], \
 		[sg.Button('Skins', key="config")], \
-		[sg.Button('Itens', key="friends")], [sg.Button('Back', key='main')]]
+		[sg.Button('Items', key="items")], [sg.Button('Back', key='main')]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read()
@@ -261,5 +292,6 @@ behaviours = {
 	"choose_level": ChooseLevel,
 	"level": Level,
 	"habilidades": Habilidades,
-	"maps": Maps
+	"maps": Maps,
+	"items": Items
 }

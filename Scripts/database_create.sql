@@ -257,7 +257,7 @@ create table if not exists public.item_jogador(
 		references public.jogador(id_jogador)
 );
 
-INSERT INTO Public.item_jogador (id_item, id_jogador)
+INSERT INTO Public.item_jogador (id_jogador, id_item)
 VALUES 
 (12, 1),
 (12, 2),
