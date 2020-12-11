@@ -109,16 +109,17 @@ create table if not exists public.mapa(
 );
 
 INSERT INTO Public.mapa (id_mapa, nome_mapa, descricao, preco)
-VALUES (1, 'Rio de Janeiro', 'Um mapa onde você pode jogar no Cristo Redentor e ser assaltado por dois caras de moto', 12.20),
-VALUES (2, 'Vila do Chaves', 'Neste mapa você pode tomar uma xicara de café com a dona Florinda e entrar no barril do Chaves', 15.20),
-VALUES (3, 'Biênio da POLI', 'Aqui você pode ficar de REC ma metade das disciplinas e pegar DP nas matérias do MAT', 13.20),
-VALUES (4, 'FAU', 'Aqui você faz maquetes e se perde no prédio principal', 13.20),
-VALUES (5, 'Metrô de São Paulo', 'Não entre neste mapa durante o horário de pico ou não conseguirá se mexer', 19.20),
-VALUES (6, 'Floresta Amazonica', 'Corra de uma onça pintada enquanto pula em cipos na floresta', 18.20),
-VALUES (7, 'Fogo no PCS', 'Corra do nabo enquanto tenta apagar um incendio no PCS', 16.20),
-VALUES (8, 'Semana de Prova da POLI', 'Fique uma semana sem dormir, enquanto tenta acumular pontos nas provas', 20.20),
-VALUES (9, 'Três homens em Conflito', 'São três jogadores e um conflito', 14.20),
-VALUES (10, 'Espaço', 'Você está perdido em Marte e precisa plantar batatas para sobreviver', 12.20);
+VALUES 
+(1, 'Rio de Janeiro', 'Um mapa onde você pode jogar no Cristo Redentor e ser assaltado por dois caras de moto', 12.20),
+(2, 'Vila do Chaves', 'Neste mapa você pode tomar uma xicara de café com a dona Florinda e entrar no barril do Chaves', 15.20),
+(3, 'Biênio da POLI', 'Aqui você pode ficar de REC ma metade das disciplinas e pegar DP nas matérias do MAT', 13.20),
+(4, 'FAU', 'Aqui você faz maquetes e se perde no prédio principal', 13.20),
+(5, 'Metrô de São Paulo', 'Não entre neste mapa durante o horário de pico ou não conseguirá se mexer', 19.20),
+(6, 'Floresta Amazonica', 'Corra de uma onça pintada enquanto pula em cipos na floresta', 18.20),
+(7, 'Fogo no PCS', 'Corra do nabo enquanto tenta apagar um incendio no PCS', 16.20),
+(8, 'Semana de Prova da POLI', 'Fique uma semana sem dormir, enquanto tenta acumular pontos nas provas', 20.20),
+(9, 'Três homens em Conflito', 'São três jogadores e um conflito', 14.20),
+(10, 'Espaço', 'Você está perdido em Marte e precisa plantar batatas para sobreviver', 12.20);
 
 create table if not exists public.objeto_cenario(
 	id_objeto_cenario bigint primary key,
