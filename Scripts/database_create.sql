@@ -35,15 +35,28 @@ create table if not exists public.Amizade(
 );
 
 INSERT INTO public.Amizade(id_jogador1, id_jogador2)
-VALUES (1, 2), (2, 4), (2, 1), (3, 4);
+VALUES 
+(1, 2),
+(2, 4),
+(2, 1),
+(1, 2),
+(2, 4),
+(2, 1),
+(1, 2),
+(2, 4),
+(2, 1),
+(1, 2),
+(2, 4),
+(2, 1),
+(1, 2),
+(2, 4),
+(2, 1),
+(3, 4);
 
 create table if not exists item(
 	ID_item BIGSERIAL PRIMARY KEY,
 	ID_jogador BIGSERIAL REFERENCES public.jogador(ID_Jogador)
 );
-
-INSERT INTO Public.item (id_jogador)
-VALUES (4), (5), (3), (1), (2);
 
 SELECT j.id_jogador, j.nick, j.email, i.id_item
 FROM public.jogador j
@@ -83,11 +96,24 @@ VALUES
 (9, 'Marreta biônica', 150.0),
 (10, 'Pirula encolhedora', 20.0);
 
-
 create table if not exists public.conquista(
 	id_conquista BIGINT PRIMARY KEY,
 	descricao VARCHAR(200) not null
 );
+
+INSERT INTO Public.item (id_conquista, descricao)
+VALUES 
+(1, 'Matou 10 tartarugas'),
+(2, 'Completou o jogo na dificuldade difícil'),
+(3, 'Conseguiu 10 records de cenários'),
+(4, 'Jogu mais de 100 horas de jogo'),
+(5, 'Tem mais de 20 amigos no multiplayer'),
+(6, 'Possui 10 skins')
+(7, 'Conseguiu todos os poderes'),
+(8, 'Fez mais de 10 mapas'),
+(9, 'Derrorou 100 inimigos'),
+(10, 'Nao pegou nenhuma REC');
+
 
 create table if not exists public.permissao(
 	id_permissao bigint primary key,
@@ -233,36 +259,36 @@ create table if not exists public.item_jogador(
 
 INSERT INTO Public.item_jogador (id_item, id_jogador)
 VALUES 
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 7),
-(2, 6),
-(3, 8),
-(3, 9),
-(3, 10),
-(4, 5),
-(4, 7),
-(4, 8),
-(5, 3),
-(5, 4),
-(5, 5),
-(6, 1),
-(6, 2),
-(6, 3),
-(7, 4),
-(7, 6),
-(7, 7),
-(8, 8),
-(8, 9),
-(8, 6),
-(9, 4),
-(9, 3),
-(9, 2),
-(10, 1),
-(10, 4),
-(10, 6);
+(12, 1),
+(12, 2),
+(12, 3),
+(12, 4),
+(12, 7),
+(12, 6),
+(13, 8),
+(13, 9),
+(13, 10),
+(14, 5),
+(14, 7),
+(14, 8),
+(15, 3),
+(15, 4),
+(15, 5),
+(16, 1),
+(16, 2),
+(16, 3),
+(17, 4),
+(17, 6),
+(17, 7),
+(18, 8),
+(18, 9),
+(18, 6),
+(19, 4),
+(19, 3),
+(19, 2),
+(19, 1),
+(19, 4),
+(19, 6);
 
 create table if not exists public.efeito_sonoro_conquista(
 	id_conquista bigserial,
