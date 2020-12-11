@@ -76,7 +76,19 @@ def list_friends(email):
 	'''
     print(query % (email, email))
     return exe_query(query % (email, email))
-
+     
+def list_items(id_jogador):
+    query = '''
+		SELECT i.material, i.poder
+		FROM public.item i
+		INNER JOIN public.item_jogador ij
+		ON ij.id_item = i.id_item
+		INNER JOIN public.jogador j
+		ON ij.id_jogador = j.id_jogador
+		WHERE j.id_jogador = '%s'
+	'''
+    print(query % (id_jogador))
+    return exe_query(query % (id_jogador))
 
 def add_friend(email1, email2):
     query = '''
@@ -101,6 +113,30 @@ def add_friend(email1, email2):
     except pg8000.exceptions.IntegrityError:
         print("AMigo ja adicionado")
         pass  # Adicionou quem ja era amigo
+        
+def list_maps():
+    query = '''
+		SELECT nome_mapa, descricao, preco
+		FROM public.mapa
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_characters():
+    query = '''
+		SELECT nome, descricao, e_inimigo, preco
+		FROM public.personagem
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_skins():
+    query = '''
+		SELECT cor_principal, nome_textura, local_arquivo, preco
+		FROM public.skin
+	'''
+    print(query)
+    return exe_query(query)
 
 def add_song(name, author, artist, file_path):
     # TODO: Add withou pass id
@@ -119,8 +155,7 @@ def list_songs():
 def get_song(name):
     query = "select local_arquivo from efeito_sonoro where nome = '%s'"
     
-    song_path = exe_query(query % (name))[0]
-    
+    song_path = exe_query(query % (name))[0]    
     
     playsound(song_path[0])
 
