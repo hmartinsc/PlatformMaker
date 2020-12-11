@@ -76,7 +76,19 @@ def list_friends(email):
 	'''
     print(query % (email, email))
     return exe_query(query % (email, email))
-
+     
+def list_itens(id_jogador):
+    query = '''
+		SELECT i.material, i.poder
+		FROM public.item i
+		INNER JOIN public.item_jogador ij
+		ON ij.id_item = i.id_item
+		INNER JOIN public.jogador j
+		ON ij.id_jogador = j.id_jogador
+		WHERE id_jogador = '%s'
+	'''
+    print(query % (id_jogador))
+    return exe_query(query % (id_jogador))
 
 def add_friend(email1, email2):
     query = '''
@@ -106,7 +118,22 @@ def list_maps():
     query = '''
 		SELECT nome_mapa, descricao, preco
 		FROM public.mapa
-	
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_characters():
+    query = '''
+		SELECT nome, descricao, e_inimigo, preco
+		FROM public.personagem
+	'''
+    print(query)
+    return exe_query(query)
+    
+def list_skins():
+    query = '''
+		SELECT cor_principal, nome_textura, local_arquivo, preco
+		FROM public.skin
 	'''
     print(query)
     return exe_query(query)

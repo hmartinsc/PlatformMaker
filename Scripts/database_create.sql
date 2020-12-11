@@ -9,16 +9,18 @@ create table if not exists public.Jogador(
 
 --ALTER table public.Jogador ADD COLUMN ID_jogador BIGSERIAL PRIMARY KEY;
 
-INSERT INTO public.jogador  (nick, senha, email)
+INSERT INTO public.jogador  (ID_jogador, nick, senha, email)
 VALUES
-('noobmaster', 'noobmaster', 'haroldo.mansur@outlook.com'),
-('doutorabobrinha', 'doutorabobrinha', 'nino@gmail.com'),
-('numero4', 'numero4', 'numero4@knd.com'),
-('mamaefalei', 'mamaefalei', 'mamaefalei@gmail.com'),
-('horacio', 'horacio', 'horacio@panini.com.br'),
-('bolas', 'bolas', 'bolas@mtst.com.br'),
-('couvos', 'couvos', 'couvos.flor@psdb.gov.br'),
-('nick', 'senha', 'email');
+(1, 'noobmaster', 'noobmaster', 'haroldo.mansur@outlook.com'),
+(2, 'doutorabobrinha', 'doutorabobrinha', 'nino@gmail.com'),
+(3, 'numero4', 'numero4', 'numero4@knd.com'),
+(4, 'mamaefalei', 'mamaefalei', 'mamaefalei@gmail.com'),
+(5, 'horacio', 'horacio', 'horacio@panini.com.br'),
+(6, 'bolas', 'bolas', 'bolas@mtst.com.br'),
+(7, 'couvos', 'couvos', 'couvos.flor@psdb.gov.br'),
+(8, 'bananas', 'bananas', 'bananas@gmail.com'),
+(9, 'nick', 'senha', 'email'),
+(10, 'seumadruga', '12345', 'seu_madruga@gmail.com');
 
 create table if not exists public.Amizade(
 	id_jogador1 BIGSERIAL,
@@ -67,6 +69,20 @@ create table if not exists public.item(
 	material VARCHAR(35) not null,
 	poder double precision
 );
+
+INSERT INTO Public.item (id_item, material, poder)
+VALUES 
+(1, 'Ferro' 100.0),
+(2, 'Madeira', 50.0),
+(3, 'Arma de fogo', 400.0),
+(4, 'Torta', 20.0),
+(5, 'Pedra', 70.0),
+(6, 'Chicote', 90.0),
+(7, 'Prego', 80.0),
+(8, 'Mão', 10.0),
+(9, 'Marreta biônica', 150.0),
+(10, 'Pirula encolhedora', 20.0);
+
 
 create table if not exists public.conquista(
 	id_conquista BIGINT PRIMARY KEY,
@@ -140,6 +156,18 @@ create table if not exists public.skin(
 		constraint preco_positivo check (preco > 0)
 );
 
+INSERT INTO Public.skin (id_skin, cor_principal, nome_textura, local_arquivo, preco)
+VALUES 
+(1, 'Branco', 'Bomba da paz', 'files\skins\pomba.png', 0.0),
+(2, 'Verde', 'Arvore', 'files\skins\arvore.png', 1.0), 
+(3, 'Preto', 'Grafite', 'files\skins\grafite.png', 5.0),
+(4, 'Vermelho', 'Sangue', 'files\skins\sangue.png', 15.0),
+(5, 'Roxo', 'Beringela', 'files\skins\roxo.png', 0.0),
+(6, 'Azul', 'Baleia', 'files\skins\baleia.png', 1.0),
+(7, 'Branco', 'Toalha', 'files\skins\toalha.png', 1.1),
+(8, 'Azul', 'Tomate', 'files\skins\tomate.png', 1.5),
+(9, 'Amarelo', 'Raio', 'files\skins\raio.png', 1.5),
+(10, 'Vermelho', 'Melancia', 'files\skins\melancia.png', 0.0);
 
 create table if not exists public.personagem(
 	id_personagem bigint primary key,
@@ -149,6 +177,19 @@ create table if not exists public.personagem(
 	preco double precision default 0.0 
 		constraint preco_positivo check (preco > 0)
 );
+
+INSERT INTO Public.personagem (id_personagem, nome, descricao, e_inimigo, preco)
+VALUES 
+(1, 'Boulos', 'Cuidado Boulos pode invadir o seu cenário', 0, 0.0),
+(2, 'Seu Madruga', 'Para pagar os 14 meses de aluguel, Seu Madruga faz tudo, menos trabalhar', 0, 1.0), 
+(3, 'Pica Pau', 'Pica Pau é tão irritante que vai fazer você desistir do jogo', 1, 5.0),
+(4, 'Kratos', 'O Bom de Guerra, ,Kratos mata seus inimigos sem a menor misericódia', 0, 15.0),
+(5, 'MC Mirela', 'Com seu falsete desconcetra qualquer inimigo', 1, 0.0),
+(6, 'Pepe e Nenem', 'Por que voce nao vem ficar comigo, baby?', 1, 1.0),
+(7, 'Dona Benta', 'Faça bolos para a criançada', 0, 1.1),
+(8, 'Zeus', 'Joga raio e mata gente', 1, 1.5),
+(9, 'Dona Florinda', 'Com seu super tapa derrota qualquer inimigo', 0, 1.5),
+(10, 'Professor Girafales', 'TA TA TA TA TA',1 , 0.0);
 
 create table if not exists public.fala(
 	id_fala bigint primary key,
@@ -190,16 +231,38 @@ create table if not exists public.item_jogador(
 		references public.jogador(id_jogador)
 );
 
-create table if not exists public.item_jogador(
-	id_item bigserial,
-	id_jogador bigserial,
-	constraint fk_item
-		foreign key(id_item)
-		references public.item(id_item),
-	constraint fk_jogador
-		foreign key(id_jogador)
-		references public.jogador(id_jogador)
-);
+INSERT INTO Public.item_jogador (id_item, id_jogador)
+VALUES 
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 4),
+(2, 7),
+(2, 6),
+(3, 8),
+(3, 9),
+(3, 10),
+(4, 5),
+(4, 7),
+(4, 8),
+(5, 3),
+(5, 4),
+(5, 5),
+(6, 1),
+(6, 2),
+(6, 3),
+(7, 4),
+(7, 6),
+(7, 7),
+(8, 8),
+(8, 9),
+(8, 6),
+(9, 4),
+(9, 3),
+(9, 2),
+(10, 1),
+(10, 4),
+(10, 6);
 
 create table if not exists public.efeito_sonoro_conquista(
 	id_conquista bigserial,
