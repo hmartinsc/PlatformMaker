@@ -184,16 +184,16 @@ create table if not exists public.skin(
 
 INSERT INTO Public.skin (id_skin, cor_principal, nome_textura, local_arquivo, preco)
 VALUES 
-(1, 'Branco', 'Bomba da paz', 'files\skins\pomba.png', 2.0),
-(2, 'Verde', 'Arvore', 'files\skins\arvore.png', 1.0), 
-(3, 'Preto', 'Grafite', 'files\skins\grafite.png', 5.0),
-(4, 'Vermelho', 'Sangue', 'files\skins\sangue.png', 15.0),
-(5, 'Roxo', 'Beringela', 'files\skins\roxo.png', 3.0),
-(6, 'Azul', 'Baleia', 'files\skins\baleia.png', 1.0),
-(7, 'Branco', 'Toalha', 'files\skins\toalha.png', 1.1),
-(8, 'Azul', 'Tomate', 'files\skins\tomate.png', 1.5),
-(9, 'Amarelo', 'Raio', 'files\skins\raio.png', 1.5),
-(10, 'Vermelho', 'Melancia', 'files\skins\melancia.png', 4.0);
+(1, 'Branco', 'Bomba da paz', 'files/skins/pomba.png', 2.0),
+(2, 'Verde', 'Arvore', 'files/skins/arvore.png', 1.0), 
+(3, 'Preto', 'Grafite', 'files/skins/grafite.png', 5.0),
+(4, 'Vermelho', 'Sangue', 'files/skins/sangue.png', 15.0),
+(5, 'Roxo', 'Beringela', 'files/skins/roxo.png', 3.0),
+(6, 'Azul', 'Baleia', 'files/skins/baleia.png', 1.0),
+(7, 'Branco', 'Toalha', 'files/skins/toalha.png', 1.1),
+(8, 'Azul', 'Tomate', 'files/skins/tomate.png', 1.5),
+(9, 'Amarelo', 'Raio', 'files/skins/raio.png', 1.5),
+(10, 'Vermelho', 'Melancia', 'files/skins/melancia.png', 4.0);
 
 create table if not exists public.personagem(
 	id_personagem bigint primary key,

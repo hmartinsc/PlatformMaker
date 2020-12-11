@@ -219,6 +219,39 @@ class Items(Screen):
 		return event
 
 
+class Skin(Screen):
+	
+	def __init__(self, params):
+		self.title = "SKins screen"
+		super().__init__(params)
+		print("Initializing skins")
+
+	# Friend
+	def layout(self):
+    	
+		print("\n"*10)
+		#print(self.params)
+		id_jogador = self.params['jogador'][0][0]
+		skins = list_skins()
+		print(skins)
+
+
+		l = [[sg.Text(item[1], tooltip="Cor: " + item[0]), sg.Image(item[2])] for item in skins]
+		 
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+
+
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
+
+
 class Config(Screen):
 	
 	def __init__(self, params):
@@ -228,7 +261,7 @@ class Config(Screen):
 
 	def layout(self):
 		return [[sg.Button('Efeitos sonoros', key="habilidades")], \
-		[sg.Button('Skins', key="config")], \
+		[sg.Button('Skins', key="skins")], \
 		[sg.Button('Items', key="items")], [sg.Button('Back', key='main')]]
 		
 	def window_behaviour(self, window):
@@ -293,5 +326,6 @@ behaviours = {
 	"level": Level,
 	"habilidades": Habilidades,
 	"maps": Maps,
-	"items": Items
+	"items": Items,
+	"skins": Skin
 }
