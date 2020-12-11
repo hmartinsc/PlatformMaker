@@ -72,7 +72,7 @@ create table if not exists public.item(
 
 INSERT INTO Public.item (id_item, material, poder)
 VALUES 
-(1, 'Ferro' 100.0),
+(1, 'Ferro', 100.0),
 (2, 'Madeira', 50.0),
 (3, 'Arma de fogo', 400.0),
 (4, 'Torta', 20.0),
@@ -153,21 +153,21 @@ create table if not exists public.skin(
 	nome_textura varchar(70) not null,
 	local_arquivo varchar(100) not null,
 	preco double precision default 0.0 
-		constraint preco_positivo check (preco > 0)
+		constraint preco_positivo check (preco >= 0)
 );
 
 INSERT INTO Public.skin (id_skin, cor_principal, nome_textura, local_arquivo, preco)
 VALUES 
-(1, 'Branco', 'Bomba da paz', 'files\skins\pomba.png', 0.0),
+(1, 'Branco', 'Bomba da paz', 'files\skins\pomba.png', 2.0),
 (2, 'Verde', 'Arvore', 'files\skins\arvore.png', 1.0), 
 (3, 'Preto', 'Grafite', 'files\skins\grafite.png', 5.0),
 (4, 'Vermelho', 'Sangue', 'files\skins\sangue.png', 15.0),
-(5, 'Roxo', 'Beringela', 'files\skins\roxo.png', 0.0),
+(5, 'Roxo', 'Beringela', 'files\skins\roxo.png', 3.0),
 (6, 'Azul', 'Baleia', 'files\skins\baleia.png', 1.0),
 (7, 'Branco', 'Toalha', 'files\skins\toalha.png', 1.1),
 (8, 'Azul', 'Tomate', 'files\skins\tomate.png', 1.5),
 (9, 'Amarelo', 'Raio', 'files\skins\raio.png', 1.5),
-(10, 'Vermelho', 'Melancia', 'files\skins\melancia.png', 0.0);
+(10, 'Vermelho', 'Melancia', 'files\skins\melancia.png', 4.0);
 
 create table if not exists public.personagem(
 	id_personagem bigint primary key,
@@ -180,16 +180,16 @@ create table if not exists public.personagem(
 
 INSERT INTO Public.personagem (id_personagem, nome, descricao, e_inimigo, preco)
 VALUES 
-(1, 'Boulos', 'Cuidado Boulos pode invadir o seu cenário', 0, 0.0),
-(2, 'Seu Madruga', 'Para pagar os 14 meses de aluguel, Seu Madruga faz tudo, menos trabalhar', 0, 1.0), 
-(3, 'Pica Pau', 'Pica Pau é tão irritante que vai fazer você desistir do jogo', 1, 5.0),
-(4, 'Kratos', 'O Bom de Guerra, ,Kratos mata seus inimigos sem a menor misericódia', 0, 15.0),
-(5, 'MC Mirela', 'Com seu falsete desconcetra qualquer inimigo', 1, 0.0),
-(6, 'Pepe e Nenem', 'Por que voce nao vem ficar comigo, baby?', 1, 1.0),
-(7, 'Dona Benta', 'Faça bolos para a criançada', 0, 1.1),
-(8, 'Zeus', 'Joga raio e mata gente', 1, 1.5),
-(9, 'Dona Florinda', 'Com seu super tapa derrota qualquer inimigo', 0, 1.5),
-(10, 'Professor Girafales', 'TA TA TA TA TA',1 , 0.0);
+(1, 'Boulos', 'Cuidado Boulos pode invadir o seu cenário', false, 10.0),
+(2, 'Seu Madruga', 'Para pagar os 14 meses de aluguel, Seu Madruga faz tudo, menos trabalhar', false, 1.0), 
+(3, 'Pica Pau', 'Pica Pau é tão irritante que vai fazer você desistir do jogo', true, 5.0),
+(4, 'Kratos', 'O Bom de Guerra, ,Kratos mata seus inimigos sem a menor misericódia', false, 15.0),
+(5, 'MC Mirela', 'Com seu falsete desconcetra qualquer inimigo', true, 20.0),
+(6, 'Pepe e Nenem', 'Por que voce nao vem ficar comigo, baby?', true, 1.0),
+(7, 'Dona Benta', 'Faça bolos para a criançada', false, 1.1),
+(8, 'Zeus', 'Joga raio e mata gente', true, 1.5),
+(9, 'Dona Florinda', 'Com seu super tapa derrota qualquer inimigo', false, 1.5),
+(10, 'Professor Girafales', 'TA TA TA TA TA', true, 3.0);
 
 create table if not exists public.fala(
 	id_fala bigint primary key,

@@ -31,7 +31,7 @@ class Screen():
 		
 		#import pdb; pdb.set_trace()
 
-		self.window = sg.Window(self.title, self.layout(), size=(800,600)) # Window Defintion
+		self.window = sg.Window(self.title, self.layout(), size=(1200,900)) # Window Defintion
 
 		#self.window_behaviour = params['behaviour'] # Behaviour -> retorna status da tela
 		
@@ -57,8 +57,8 @@ class Login(Screen):
 	# Login
 	def layout(self):
 		# Nao sei o que fazer com os mapas ainda
-		return [[sg.Text("Username"), sg.Input(size=(10, 10))], \
-			[sg.Text("Password"), sg.Input(size=(10, 10))], \
+		return [[sg.Text("Username"), sg.Input(size=(10, 40))], \
+			[sg.Text("Password"), sg.Input(size=(10, 40))], \
 			[sg.Button('LogIn', key="main")]]
 
 	def window_behaviour(self, window):
@@ -91,7 +91,7 @@ class Main(Screen):
 		# Nao sei o que fazer com os mapas ainda
 		return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
 			[sg.Button('Amigos', key='friends')], \
-			[sg.Button('Mapas', key='main')], \
+			[sg.Button('Mapas', key='maps')], \
 			[sg.Button('Configuracoes', key='config')], \
 			[sg.Button('LogOut', key="login")]]
 		
@@ -159,6 +159,33 @@ class Friend(Screen):
 		print('values: ', values)
 		
 		return event
+		
+
+class Maps(Screen):
+	
+	def __init__(self, params):
+		self.title = "Maps screen"
+		super().__init__(params)
+		print("Initializing maps")
+
+	# Friend
+	def layout(self):
+		friends = list_friends(self.params['user'])
+		print('\nFRIENDS: ', friends)
+		maps = list_maps()
+		l = [[sg.Button(m[0], tooltip=m[1])] for m in maps]
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+
+
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		return event
 
 
 class Config(Screen):
@@ -171,7 +198,7 @@ class Config(Screen):
 	def layout(self):
 		return [[sg.Button('Efeitos sonoros', key="habilidades")], \
 		[sg.Button('Skins', key="config")], \
-		[sg.Button('Itens', key="friends")]]
+		[sg.Button('Itens', key="friends")], [sg.Button('Back', key='main')]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read()
@@ -190,7 +217,7 @@ class ChooseLevel(Screen):
 		print("Initializing Login")
 
 	def layout(self):
-		return [sg.Button('Voltar', key='main')]#[[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
+		return [[sg.Button('Voltar', key='main')]]#[[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
 			#[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
 		
 	def window_behaviour(self, window):
@@ -233,5 +260,6 @@ behaviours = {
 	"config": Config,
 	"choose_level": ChooseLevel,
 	"level": Level,
-	"habilidades": Habilidades
+	"habilidades": Habilidades,
+	"maps": Maps
 }
