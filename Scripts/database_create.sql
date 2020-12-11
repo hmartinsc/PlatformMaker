@@ -90,7 +90,7 @@ create table if not exists public.conquista(
 	descricao VARCHAR(200) not null
 );
 
-INSERT INTO Public.item (id_conquista, descricao)
+INSERT INTO Public.conquista (id_conquista, descricao)
 VALUES 
 (1, 'Matou 10 tartarugas'),
 (2, 'Completou o jogo na dificuldade difícil'),
@@ -246,7 +246,7 @@ create table if not exists public.personagem(
 
 INSERT INTO Public.personagem (id_personagem, nome, descricao, e_inimigo, preco)
 VALUES 
-(1, 'Boulos', 'Cuidado Boulos pode invadir o seu cenário', false, 10.0),
+(1, 'Invasor', 'Cuidado, o Ivansor pode invadir o seu cenário', false, 10.0),
 (2, 'Seu Madruga', 'Para pagar os 14 meses de aluguel, Seu Madruga faz tudo, menos trabalhar', false, 1.0), 
 (3, 'Pica Pau', 'Pica Pau é tão irritante que vai fazer você desistir do jogo', true, 5.0),
 (4, 'Kratos', 'O Bom de Guerra, ,Kratos mata seus inimigos sem a menor misericódia', false, 15.0),
