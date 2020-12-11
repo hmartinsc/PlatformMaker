@@ -91,7 +91,7 @@ class Main(Screen):
 	# Main
 	def layout(self):
 		# Nao sei o que fazer com os mapas ainda
-		return [[sg.Button('Jogar', key="choose_level", tooltip="clickme")], \
+		return [[sg.Button('Jogar', key="personagem", tooltip="clickme")], \
 			[sg.Button('Amigos', key='friends')], \
 			[sg.Button('Mapas', key='maps')], \
 			[sg.Button('Configuracoes', key='config')], \
@@ -273,16 +273,21 @@ class Config(Screen):
 		return event
 
 
-class ChooseLevel(Screen):
+class Personagem(Screen):
 	
 	def __init__(self, params):
-		self.title = "Login screen"
+		self.title = "Personagem screen"
 		super().__init__(params)
-		print("Initializing Login")
+		print("Initializing personagem")
 
 	def layout(self):
-		return [[sg.Button('Voltar', key='main')]]#[[sg.Button('Fase1', key="main"), sg.Image('Images/avatar1.png')], \
-			#[sg.Button('Fase2', key="config"), sg.Image('Images/avatar1.png')]]
+    	
+		items = list_characters()
+		print(items)
+		l = [[sg.Text(item[0], tooltip=item[1])] for item in items]
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read()
@@ -322,7 +327,7 @@ behaviours = {
 	"main": Main,
 	"friends": Friend,
 	"config": Config,
-	"choose_level": ChooseLevel,
+	"personagem": Personagem,
 	"level": Level,
 	"habilidades": Habilidades,
 	"maps": Maps,
