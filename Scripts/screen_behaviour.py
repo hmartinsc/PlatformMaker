@@ -109,10 +109,10 @@ class Main(Screen):
 
 		return event
 		
-class Habilidades(Screen):
-	
+class Musicas(Screen):
+    	
 	def __init__(self, params):
-		self.title = "Habilidades screen"
+		self.title = "Musicas screen"
 		super().__init__(params)
 
 	# Main
@@ -123,6 +123,48 @@ class Habilidades(Screen):
 		# Nao sei o que fazer com os mapas ainda
 		return l#[[sg.Button('Jogar', key="choose_level", tooltip="clickme")]]
 		
+	    	
+		print(self.params)
+		id_jogador = self.params['jogador'][0][0]
+		items = list_items(id_jogador)
+		print(items)
+		l = [[sg.Text(item[0], tooltip="Poder: " + str(item[1]))] for item in items]
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+
+	def window_behaviour(self, window):
+		event, values = window.read()
+		
+		print('event: ', event)
+		print('values: ', values)
+		
+		get_song(event)
+		
+		
+		if event == 'login':
+			self.params['logged'] = False
+
+		return 'config'
+
+class Habilidades(Screen):
+    	
+	def __init__(self, params):
+		self.title = "Habilidades screen"
+		super().__init__(params)
+
+	# Main
+	def layout(self):
+	    	
+		print(self.params)
+		id_jogador = self.params['jogador'][0][0]
+		items = list_habilidades(id_jogador)
+		print(items)
+		l = [[sg.Text(item[0], tooltip="Bla: " + str(item[1]))] for item in items]
+
+		return l + [[sg.Button("Back", key="main")]]
+		#return [[sg.Button('Obrigado, amigo, vc e um amigo', key="main")]]
+
 	def window_behaviour(self, window):
 		event, values = window.read()
 		
@@ -260,9 +302,11 @@ class Config(Screen):
 		print("Initializing Login")
 
 	def layout(self):
-		return [[sg.Button('Efeitos sonoros', key="habilidades")], \
+		return [[sg.Button('Efeitos sonoros', key="musicas")], \
 		[sg.Button('Skins', key="skins")], \
-		[sg.Button('Items', key="items")], [sg.Button('Back', key='main')]]
+		[sg.Button('Items', key="items")], \
+		[sg.Button('Habilidades', key="habilidades")],\
+		[sg.Button('Back', key='main')]]
 		
 	def window_behaviour(self, window):
 		event, values = window.read()
@@ -329,8 +373,9 @@ behaviours = {
 	"config": Config,
 	"personagem": Personagem,
 	"level": Level,
-	"habilidades": Habilidades,
+	"musicas": Musicas,
 	"maps": Maps,
 	"items": Items,
-	"skins": Skin
+	"skins": Skin,
+	"habilidades": Habilidades
 }
