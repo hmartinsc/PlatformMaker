@@ -108,8 +108,8 @@ def list_maps():
 		FROM public.mapa
 	
 	'''
-    print(query % (email, email))
-    return exe_query(query % (email, email))
+    print(query)
+    return exe_query(query)
 
 def add_song(name, author, artist, file_path):
     # TODO: Add withou pass id
