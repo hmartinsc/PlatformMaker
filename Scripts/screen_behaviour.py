@@ -101,6 +101,7 @@ class Main(Screen):
 		print('event: ', event)
 		print('values: ', values)
 		
+		
 		if event == 'login':
 			self.params['logged'] = False
 
